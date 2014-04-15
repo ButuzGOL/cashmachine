@@ -1,0 +1,2 @@
+# CashMachine
+### a Sails application

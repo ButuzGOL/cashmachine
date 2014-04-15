@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Cash Machine</title>
+    <link href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/main.css" rel="stylesheet">
+  </head>
+
+  <body>
+
+    <div id="header-region"></div>
+
+    <div id="main-region" class="container">
+      <p>Here is static content in the web page. You'll notice that it gets replaced by our app as soon as we start it.</p>
+    </div>
+
+    <script type="text/template" id="header-template">
+      <nav class="navbar-inverse navbar-static-top" role="navigation">
+        <div class="container">
+          <a class="navbar-brand" href="">Cash Machine</a>
+          <div class="nav-collapse collapse">
+            <ul class="nav"></ul>
+          </div>
+        </div>
+      </nav>
+    </script>
+
+    <script type="text/template" id="sessions-signin-template">
+      <div class="row">
+        <div class="col-md-6 col-md-offset-3">
+          <form class="form-horizontal" role="form">
+            <div class="form-group">
+              <label for="card-number" class="col-sm-4 control-label">Card number</label>
+              <div class="col-sm-8">
+                <input type="text" class="form-control" id="card-number" placeholder="" />
+              </div>
+            </div>
+            <div class="form-group">
+              <div class="col-sm-offset-4 col-sm-8">
+                <button type="submit" class="btn btn-default pull-right">Next</button>
+              </div>
+            </div>
+        </div>
+      </div>
+    </script>
+
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.0/jquery.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/underscore.js/1.6.0/underscore-min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/backbone.js/1.1.2/backbone-min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/backbone.marionette/1.6.4-bundled/backbone.marionette.min.js"></script>
+
+    <script src="js/app.js"></script>
+
+    <script src="js/apps/header/list/view.js"></script>
+    <script src="js/apps/header/list/controller.js"></script>
+    <script src="js/apps/header/app.js"></script>
+
+    <script src="js/apps/sessions/signin/view.js"></script>
+    <script src="js/apps/sessions/signin/controller.js"></script>
+    <script src="js/apps/sessions/app.js"></script>
+
+    <script type="text/javascript">
+      CashMachine.start();
+    </script>
+  </body>
+</html>

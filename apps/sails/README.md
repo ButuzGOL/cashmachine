@@ -1,2 +1,3 @@
-# CashMachine
-### a Sails application
+# cashmachine
+
+a [Sails](http://sailsjs.org) application

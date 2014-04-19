@@ -1,27 +1,115 @@
 /**
- * CardsController
+ * CardsController.js
  *
- * @module      :: Controller
- * @description	:: A set of functions called `actions`.
- *
- *                 Actions contain code telling Sails how to respond to a certain type of request.
- *                 (i.e. do stuff, then send some JSON, show an HTML page, or redirect to another URL)
- *
- *                 You can configure the blueprint URLs which trigger these actions (`config/controllers.js`)
- *                 and/or override them with custom routes (`config/routes.js`)
- *
- *                 NOTE: The code you write here supports both HTTP and Socket.io automatically.
- *
+ * @description ::
  * @docs        :: http://sailsjs.org/#!documentation/controllers
  */
 
+var async = require('async');
+
+var _before = function(req, res) {
+  if (!req.session.cardId) {
+    return res.forbidden('Not authorized');
+  }
+  return true;
+};
+
 module.exports = {
 
-  /**
-   * Overrides for the settings in `config/controllers.js`
-   * (specific to CardsController)
-   */
-  _config: {}
+  me: function(req, res) {
+    if (_before(req, res) !== true) {
+      return;
+    }
 
+    Cards.findOne(req.session.cardId).done(function(err, card) {
+      if (err) {
+        return res.badRequest(err);
+      }
 
+      if (!card) {
+        return res.notFound();
+      }
+
+      CardOperations.create({ code: 1, owner: card.id }).done(function(err) {
+        if (err) {
+          return res.badRequest(err);
+        }
+
+        res.json(card);
+      });
+
+    });
+  },
+
+  balance: function(req, res) {
+    if (_before(req, res) !== true) {
+      return;
+    }
+
+    var take = Number(req.body.take);
+
+    Cards.findOne(req.session.cardId).done(function(err, card) {
+      var saveFn, operationCreateFn;
+
+      if (err) {
+        return res.badRequest(err);
+      }
+
+      if (!card) {
+        return res.notFound();
+      }
+
+      if (take > card.balance) {
+        return res.badRequest({ message: 'Not enough balance' });
+      } else if (take <= 0) {
+        return res.badRequest({ message: 'Should be more than zero' });
+      }
+
+      card.balance -= take;
+
+      saveFn = function(done) {
+        card.save(function(err) {
+          if (err) {
+            return res.badRequest(err);
+          }
+          done();
+        });
+      };
+
+      operationCreateFn = function(done) {
+        CardOperations.create({ code: 2, owner: card.id }).done(function(err) {
+          if (err) {
+            return res.badRequest(err);
+          }
+
+          done();
+        });
+      };
+
+      async.parallel([saveFn, operationCreateFn], function() {
+          res.send(200);
+      });
+
+    });
+  },
+
+  operations: function(req, res) {
+    if (_before(req, res) !== true) {
+      return;
+    }
+
+    Cards.findOne(req.session.cardId).populate('operations').done(
+      function(err, card) {
+        if (err) {
+          return res.badRequest(err);
+        }
+
+        if (!card) {
+          return res.notFound();
+        }
+
+        res.json(card.operations);
+      }
+    );
+  }
 };

@@ -1,9 +1,9 @@
 CashMachine.module('HeaderApp.List', function(List, CashMachine, Backbone, Marionette, $, _) {
   List.Controller = {
     listHeader: function() {
-      var headers = new List.Headers();
+      var header = new List.Header();
 
-      CashMachine.headerRegion.show(headers);
+      CashMachine.headerRegion.show(header);
     }
   };
 });

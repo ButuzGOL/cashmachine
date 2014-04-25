@@ -16,31 +16,67 @@
     </div>
 
     <script type="text/template" id="header-template">
+
       <nav class="navbar-inverse navbar-static-top" role="navigation">
         <div class="container">
           <a class="navbar-brand" href="">Cash Machine</a>
-          <div class="nav-collapse collapse">
-            <ul class="nav"></ul>
-          </div>
+          <ul class="nav navbar-nav navbar-right">
+            <% if (card) { %>
+              <li><a href="#signout">Signout</a></li>
+            <% } %>
+          </ul>
         </div>
       </nav>
+    </script>
+
+    <script type="text/template" id="menu-template">
+      Menu
     </script>
 
     <script type="text/template" id="sessions-signin-template">
       <div class="row">
         <div class="col-md-6 col-md-offset-3">
+          <% if (errorMessages.length) { %>
+            <div class="alert alert-danger">
+              <% if (errorMessages.length === 1) { %>
+                <%= errorMessages[0] %>
+              <% } else { %>
+                <ul>
+                  <% _.each(errorMessages, function(errorMessage) { %>
+                    <li><%= errorMessage %></li>
+                  <% }); %>
+                </ul>
+              <% } %>
+            </div>
+          <% } %>
           <form class="form-horizontal" role="form">
-            <div class="form-group">
-              <label for="card-number" class="col-sm-4 control-label">Card number</label>
-              <div class="col-sm-8">
-                <input type="text" class="form-control" id="card-number" placeholder="" />
+            <section id="signin-stage-zero" style="<% if (stage !== 0) { %>display: none<% } %>">
+              <div class="form-group">
+                <label for="number" class="col-sm-4 control-label">Card number</label>
+                <div class="col-sm-8">
+                  <input required="required" type="text" class="form-control" name="number" id="number" value="<%= number %>" placeholder="" />
+                </div>
               </div>
-            </div>
-            <div class="form-group">
-              <div class="col-sm-offset-4 col-sm-8">
-                <button type="submit" class="btn btn-default pull-right">Next</button>
+              <div class="form-group">
+                <div class="col-sm-offset-4 col-sm-8">
+                  <button data-action="next" class="btn btn-default pull-right">Next</button>
+                </div>
               </div>
-            </div>
+            </section>
+            <section id="signin-stage-first" style="<% if (stage !== 1) { %>display: none<% } %>">
+              <div class="form-group">
+                <label for="pin" class="col-sm-4 control-label">Pin</label>
+                <div class="col-sm-8">
+                  <input required="required" type="password" class="form-control" name="pin" id="pin" placeholder="" value="<%= pin %>" />
+                </div>
+              </div>
+              <div class="form-group">
+                <div class="col-sm-offset-4 col-sm-8">
+                  <button data-action="submit" class="btn btn-primary pull-right">Submit</button>
+                  <button data-action="cancel" class="btn btn-default">Cancel</button>
+                </div>
+              </div>
+            </section>
         </div>
       </div>
     </script>
@@ -51,14 +87,24 @@
     <script src="//cdnjs.cloudflare.com/ajax/libs/backbone.marionette/1.6.4-bundled/backbone.marionette.min.js"></script>
 
     <script src="js/app.js"></script>
+    <script src="js/config.js"></script>
+    <script src="js/mediator.js"></script>
 
     <script src="js/apps/header/list/view.js"></script>
     <script src="js/apps/header/list/controller.js"></script>
     <script src="js/apps/header/app.js"></script>
 
+    <script src="js/entities/card.js"></script>
+
     <script src="js/apps/sessions/signin/view.js"></script>
     <script src="js/apps/sessions/signin/controller.js"></script>
     <script src="js/apps/sessions/app.js"></script>
+
+    <script src="js/apps/menu/list/controller.js"></script>
+    <script src="js/apps/menu/list/view.js"></script>
+
+    <script src="js/apps/pages/home/controller.js"></script>
+    <script src="js/apps/pages/app.js"></script>
 
     <script type="text/javascript">
       CashMachine.start();

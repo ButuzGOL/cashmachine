@@ -1,18 +1,19 @@
 CashMachine.module('SessionsApp', function(SessionsApp, CashMachine, Backbone, Marionette, $, _) {
-  CashMachine.Router = Marionette.AppRouter.extend({
+  SessionsApp.Router = Marionette.AppRouter.extend({
     appRoutes: {
-      "": "form",
+      'signout': 'signout'
     }
   });
 
   var API = {
-    form: function() {
-      SessionsApp.Signin.Controller.form();
+    signout: function() {
+      CashMachine.vent.trigger('signout');
+      Backbone.history.navigate('/', { trigger: true });
     }
   };
 
   CashMachine.addInitializer(function() {
-    new CashMachine.Router({
+    new SessionsApp.Router({
       controller: API
     });
   });

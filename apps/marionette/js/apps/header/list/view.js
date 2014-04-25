@@ -1,13 +1,21 @@
 CashMachine.module('HeaderApp.List', function(List, CashMachine, Backbone, Marionette, $, _) {
   List.Header = Marionette.ItemView.extend({
-    template: '#header-link',
-    tagName: 'li'
-  });
-
-  List.Headers = Marionette.CompositeView.extend({
     template: '#header-template',
     className: 'navbar navbar-inverse navbar-fixed-top',
-    itemView: List.Header,
-    itemViewContainer: 'ul'
+    initialize: function() {
+      Marionette.ItemView.prototype.initialize.apply(this, arguments);
+
+      CashMachine.vent.on('signin', this.render);
+      CashMachine.vent.on('signout', this.render);
+    },
+    serializeData: function() {
+      var object =
+        Marionette.ItemView.prototype.serializeData.apply(this, arguments),
+          card = CashMachine.mediator.card;
+
+      return _.extend(object, {
+        card: (card) ? card.toJSON() : null
+      });;
+    },
   });
 });

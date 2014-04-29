@@ -16,6 +16,8 @@ module.exports = {
     }
 
     Cards.findOne(condition, function(err, card) {
+      var response = {};
+
       if (err) {
         return res.badRequest(err);
       } else if (!card) {
@@ -43,9 +45,11 @@ module.exports = {
         return res.badRequest({ message: 'Card is blocked' });
       } else if (condition.pin) {
         req.session.cardId = card.id;
+        response.sessionId = req.sessionID;
       }
 
-      return res.send(_.pick(card, 'id'));
+      response.id = card.id;
+      return res.send(response);
     });
   },
 };

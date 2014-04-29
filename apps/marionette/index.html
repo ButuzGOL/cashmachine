@@ -20,6 +20,11 @@
       <nav class="navbar-inverse navbar-static-top" role="navigation">
         <div class="container">
           <a class="navbar-brand" href="">Cash Machine</a>
+          <ul class="nav navbar-nav">
+            <% if (card) { %>
+              <li><a href="#">Home</a></li>
+            <% } %>
+          </ul>
           <ul class="nav navbar-nav navbar-right">
             <% if (card) { %>
               <li><a href="#signout">Signout</a></li>
@@ -30,7 +35,11 @@
     </script>
 
     <script type="text/template" id="menu-template">
-      Menu
+      <h4>Menu</h4>
+      <ul class="nav nav-pills nav-stacked" style="max-width: 300px;">
+        <li><a href="#cards/me">Card info</a></li>
+        <li><a href="#cards/balance">Take money</a></li>
+      </ul>
     </script>
 
     <script type="text/template" id="sessions-signin-template">
@@ -81,6 +90,24 @@
       </div>
     </script>
 
+    <script type="text/template" id="cards-view-template">
+      <h4>Card Info</h4>
+
+      <dl class="dl-horizontal">
+        <dt>Id</dt>
+        <dd><%= id %></dd>
+        <dt>Balance</dt>
+        <dd><%= balance %></dd>
+      </dl>
+
+      <a href="" data-action="operations">Operations</a>
+    </script>
+
+    <script type="text/template" id="cards-operations-template">
+      <h5>Card Operations</h5>
+
+    </script>
+
     <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.0/jquery.min.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/underscore.js/1.6.0/underscore-min.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/backbone.js/1.1.2/backbone-min.js"></script>
@@ -105,6 +132,10 @@
 
     <script src="js/apps/pages/home/controller.js"></script>
     <script src="js/apps/pages/app.js"></script>
+
+    <script src="js/apps/cards/view/view.js"></script>
+    <script src="js/apps/cards/view/controller.js"></script>
+    <script src="js/apps/cards/app.js"></script>
 
     <script type="text/javascript">
       CashMachine.start();

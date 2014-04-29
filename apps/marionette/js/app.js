@@ -16,3 +16,12 @@ CashMachine.vent.on('signin', function(card) {
 CashMachine.vent.on('signout', function() {
   CashMachine.mediator.card = null;
 });
+
+
+$.ajaxSetup({
+  dataType: 'json',
+  xhrFields: {
+       withCredentials: true
+  },
+  crossDomain: true
+});

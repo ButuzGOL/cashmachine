@@ -5,7 +5,8 @@
  * @docs        :: http://sailsjs.org/#!documentation/controllers
  */
 
-var async = require('async');
+var _ = require('lodash'),
+    async = require('async');
 
 var _before = function(req, res) {
   if (!req.session.cardId) {
@@ -35,7 +36,7 @@ module.exports = {
           return res.badRequest(err);
         }
 
-        res.json(card);
+        res.json(_.pick(card, 'id', 'balance'));
       });
 
     });

@@ -1,13 +1,17 @@
 CashMachine.module('CardsApp', function(CardsApp, CashMachine, Backbone, Marionette, $, _){
   CardsApp.Router = Marionette.AppRouter.extend({
     appRoutes: {
-      'cards/me': 'viewCard'
+      'cards/me': 'viewCard',
+      'cards/me/balance': 'balanceCard'
     }
   });
 
   var API = {
     viewCard: function() {
       CardsApp.View.Controller.viewCard();
+    },
+    balanceCard: function() {
+      CardsApp.Balance.Controller.balanceCard();
     }
   };
 

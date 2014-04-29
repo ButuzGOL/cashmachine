@@ -13,6 +13,13 @@ CashMachine.module('Entities', function(Entities, CashMachine, Backbone, Marione
         method: 'POST',
         data: this.toJSON()
       });
+    },
+    balance: function(take) {
+      return $.ajax({
+        url: this.url() + '/balance',
+        method: 'PUT',
+        data: { take: take }
+      });
     }
   });
 });

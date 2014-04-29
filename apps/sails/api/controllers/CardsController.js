@@ -78,17 +78,17 @@ module.exports = {
       };
 
       operationCreateFn = function(done) {
-        CardOperations.create({ code: 2, owner: card.id }).done(function(err) {
+        CardOperations.create({ code: 2, owner: card.id }).done(function(err, operation) {
           if (err) {
             return res.badRequest(err);
           }
 
-          done();
+          done(operation);
         });
       };
 
-      async.parallel([saveFn, operationCreateFn], function() {
-          res.send(200);
+      async.waterfall([saveFn, operationCreateFn], function(operation) {
+        res.json(_.pick(operation, 'code', 'createdAt', 'id'));
       });
 
     });

@@ -1,4 +1,4 @@
-CashMachine.module('SessionsApp.Signin', function(Signin, CashMachine, Backbone, Marionette, $, _){
+CashMachine.module('SessionsApp.Signin', function(Signin, CashMachine, Backbone, Marionette, $, _) {
   Signin.Form = Marionette.ItemView.extend({
     template: '#sessions-signin-template',
     stage: 0,
@@ -54,7 +54,7 @@ CashMachine.module('SessionsApp.Signin', function(Signin, CashMachine, Backbone,
     },
     submit: function(event) {
       var _this = this;
-      
+
       event.preventDefault();
 
       this.model.signin()

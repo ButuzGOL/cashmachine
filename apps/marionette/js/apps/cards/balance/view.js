@@ -1,5 +1,17 @@
 CashMachine.module('CardsApp.Balance', function(Balance, CashMachine, Backbone, Marionette, $, _) {
-  Balance.View = Marionette.ItemView.extend({
+
+  Balance.Layout = Marionette.Layout.extend({
+    template: '#cards-balance-layout-template',
+    regions: {
+      content: '[data-place=content]'
+    }
+  });
+
+  Balance.Operation = Marionette.ItemView.extend({
+    template: '#cards-view-operations-item-template'
+  });
+
+  Balance.Form = Marionette.ItemView.extend({
     template: '#cards-balance-template',
     errorMessages: [],
     take: '',
@@ -34,8 +46,8 @@ CashMachine.module('CardsApp.Balance', function(Balance, CashMachine, Backbone, 
       event.preventDefault();
 
       this.model.balance(this.take)
-        .done(function() {
-          console.log('done')
+        .done(function(response) {
+          _this.trigger('balanceForm:submit', response);
         })
         .fail(function(jqXHR) {
           _this.errorMessages = [jqXHR.responseJSON.message];

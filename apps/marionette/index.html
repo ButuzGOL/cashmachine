@@ -102,12 +102,27 @@
       </dl>
 
       <a href="" data-action="operations">Operations</a>
+      <section data-place="card-operations"></section>
     </script>
 
     <script type="text/template" id="cards-operations-template">
       <h5>Card Operations</h5>
 
     </script>
+
+    <script type="text/template" id="cards-view-operations-item-template">
+      <dl class="dl-horizontal">
+        <dt>Id</dt>
+        <dd><%= id %></dd>
+        <dt>Code</dt>
+        <dd><%= code %></dd>
+      </dl>
+    </script>
+
+    <script type="text/template" id="cards-view-operations-no-item-template">
+      No data
+    </script>
+
 
     <script type="text/template" id="cards-balance-template">
       <h5>Take money</h5>
@@ -142,6 +157,11 @@
       </div>
     </script>
 
+    <script  type="text/template" id="cards-balance-layout-template">
+      <h4>Balance</h4>
+      <section data-place="content"></section>
+    </script>
+
     <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.0/jquery.min.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/underscore.js/1.6.0/underscore-min.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/backbone.js/1.1.2/backbone-min.js"></script>
@@ -156,6 +176,7 @@
     <script src="js/apps/header/app.js"></script>
 
     <script src="js/entities/card.js"></script>
+    <script src="js/entities/card-operation.js"></script>
 
     <script src="js/apps/sessions/signin/view.js"></script>
     <script src="js/apps/sessions/signin/controller.js"></script>

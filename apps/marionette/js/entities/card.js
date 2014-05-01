@@ -1,5 +1,10 @@
 CashMachine.module('Entities', function(Entities, CashMachine, Backbone, Marionette, $, _) {
   Entities.Card = Backbone.Model.extend({
+    initialize: function() {
+      Backbone.Model.prototype.initialize.apply(this, arguments);
+
+      this.set('operations', new CashMachine.Entities.Card.Operations());
+    },
     url: function() {
       return CashMachine.config.apiRoot + '/cards/me';
     },
@@ -11,7 +16,7 @@ CashMachine.module('Entities', function(Entities, CashMachine, Backbone, Marione
       return $.ajax({
         url: CashMachine.config.apiRoot + '/signin',
         method: 'POST',
-        data: this.toJSON()
+        data: { number: this.get('number'), pin: this.get('pin') }
       });
     },
     balance: function(take) {

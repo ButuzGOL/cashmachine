@@ -8,6 +8,9 @@ CashMachine.module('HeaderApp.List', function(List, CashMachine, Backbone, Mario
       CashMachine.vent.on('signin', this.render);
       CashMachine.vent.on('signout', this.render);
     },
+    events: {
+      'click [data-action="signout"]': 'signout'
+    },
     serializeData: function() {
       var object =
         Marionette.ItemView.prototype.serializeData.apply(this, arguments),
@@ -15,7 +18,15 @@ CashMachine.module('HeaderApp.List', function(List, CashMachine, Backbone, Mario
 
       return _.extend(object, {
         card: (card) ? card.toJSON() : null
-      });;
+      });
     },
+    signout: function(event) {
+      event.preventDefault();
+
+      CashMachine.mediator.card.signout().done(function() {
+        CashMachine.vent.trigger('signout');
+        Backbone.history.navigate('/', { trigger: true });
+      });
+    }
   });
 });

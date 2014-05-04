@@ -34,6 +34,10 @@ module.exports.routes = {
     controller: 'sessions',
     action: 'signin'
   },
+  'get /signout': {
+    controller: 'sessions',
+    action: 'signout'
+  },
 
   'get /cards/me': {
     controller: 'cards',

@@ -11,22 +11,26 @@ module.exports = {
       number: Number(req.body.number)
     };
 
-    if (req.body.pin) {
-      condition.pin = Number(req.body.pin);
-    }
-
     Cards.findOne(condition, function(err, card) {
       var response = {};
 
       if (err) {
         return res.badRequest(err);
       } else if (!card) {
+        return res.badRequest({ message: 'Wrond data' });
+      }
 
+      if (card.blocked) {
+        return res.badRequest({ message: 'Card is blocked' });
+      }
+
+      if (req.body.pin && card.pin !== Number(req.body.pin)) {
         if (!req.session.signinAttempts) {
           req.session.signinAttempts = 1;
         } else if (req.session.signinAttempts < 2) {
           req.session.signinAttempts++;
         } else {
+          delete req.session.signinAttempts;
           card.blocked = true;
           card.save(function(err) {
             if (err) {
@@ -41,9 +45,8 @@ module.exports = {
         return res.badRequest({ message: 'Wrond data' });
       }
 
-      if (card.blocked) {
-        return res.badRequest({ message: 'Card is blocked' });
-      } else if (condition.pin) {
+      if (req.body.pin) {
+        delete req.session.signinAttempts;
         req.session.cardId = card.id;
         response.sessionId = req.sessionID;
       }
@@ -52,4 +55,9 @@ module.exports = {
       return res.send(response);
     });
   },
+  signout: function(req, res) {
+    req.session.destroy();
+    
+    res.json(200);
+  }
 };

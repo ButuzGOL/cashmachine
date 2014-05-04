@@ -21,7 +21,7 @@ CashMachine.vent.on('signout', function() {
 $.ajaxSetup({
   dataType: 'json',
   xhrFields: {
-       withCredentials: true
+    withCredentials: true
   },
   crossDomain: true
 });

@@ -16,7 +16,15 @@ CashMachine.module('Entities', function(Entities, CashMachine, Backbone, Marione
       return $.ajax({
         url: CashMachine.config.apiRoot + '/signin',
         method: 'POST',
-        data: { number: this.get('number'), pin: this.get('pin') }
+        data: {
+          number: this.get('number').replace(/-/g, ''),
+          pin: this.get('pin')
+        }
+      });
+    },
+    signout: function() {
+      return $.ajax({
+        url: CashMachine.config.apiRoot + '/signout'
       });
     },
     balance: function(take) {

@@ -1,5 +1,16 @@
 CashMachine.module('MenuApp.List', function(List, CashMachine, Backbone, Marionette, $, _) {
-  List.Menu = Marionette.ItemView.extend({
-    template: '#menu-template'
+
+  var InfoView = Marionette.ItemView.extend({
+    template: '#info-template'
+  });
+
+  List.Menu = Marionette.BossView.extend({
+    template: '#menu-template',
+    subViews: {
+      info: InfoView
+    },
+    subViewContainers: {
+      info: '[data-place=info]'
+    }
   });
 });

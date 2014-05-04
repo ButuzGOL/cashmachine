@@ -6,7 +6,7 @@ CashMachine.module('CardsApp.View', function(View, CashMachine, Backbone, Marion
     template: '#cards-view-operations-item-template'
   });
 
-  NoItemsView = Backbone.Marionette.ItemView.extend({
+  NoItemsView = Marionette.ItemView.extend({
     template: "#cards-view-operations-no-item-template"
   });
 

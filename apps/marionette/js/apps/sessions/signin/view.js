@@ -15,6 +15,9 @@ CashMachine.module('SessionsApp.Signin', function(Signin, CashMachine, Backbone,
       'click [data-action=submit]': 'submit',
       'click [data-action=cancel]': 'cancel'
     },
+    onDomRefresh: function() {
+      $('#number', this.el).mask('999-999-999');
+    },
     serializeData: function() {
       var object =
         Marionette.ItemView.prototype.serializeData.apply(this, arguments);
@@ -31,9 +34,11 @@ CashMachine.module('SessionsApp.Signin', function(Signin, CashMachine, Backbone,
     },
     changedAttribute: function() {
       var setObject = {},
-          $target = $(event.target);
+          $target = $(event.target),
+          name = $target.attr('name'),
+          value = $target.val();
 
-      setObject[$target.attr('name')] = $target.val();
+      setObject[name] = value;
       this.model.set(setObject);
     },
     next: function(event) {
@@ -61,8 +66,11 @@ CashMachine.module('SessionsApp.Signin', function(Signin, CashMachine, Backbone,
         .done(function() {
            CashMachine.vent.trigger('signin', _this.model);
         })
-        .fail(function() {
+        .fail(function(jqXHR) {
           _this.errorMessages = [jqXHR.responseJSON.message];
+        })
+        .always(function() {
+          _this.render();
         });
     },
     cancel: function(event) {

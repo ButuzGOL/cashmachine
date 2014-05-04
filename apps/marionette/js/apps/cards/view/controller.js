@@ -1,7 +1,8 @@
 CashMachine.module('CardsApp.View', function(View, CashMachine, Backbone, Marionette, $, _) {
   View.Controller = {
     viewCard: function() {
-      var card = CashMachine.mediator.card;
+      // var card = CashMachine.mediator.card;
+      var card = new CashMachine.Entities.Card();
       card.fetch().done(function() {
         var view = new View.View({
           model: card,

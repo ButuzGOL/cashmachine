@@ -12,7 +12,8 @@ CashMachine.module('PagesApp', function(PagesApp, CashMachine, Backbone, Marione
   };
 
   CashMachine.vent.on('signin', API.home);
-  
+  CashMachine.vent.on('signout', API.home);
+
   CashMachine.addInitializer(function() {
     new PagesApp.Router({
       controller: API

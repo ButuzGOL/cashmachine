@@ -1,0 +1,9 @@
+<h1>Cards</h1>
+
+<ul>
+ {{#each model}}
+ <li>{{#link-to 'card' this}}{{this.id}}{{/link-to}}</li>
+  {{/each}}
+</ul>
+
+{{outlet}}

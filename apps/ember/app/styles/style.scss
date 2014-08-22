@@ -1,0 +1,10 @@
+$icon-font-path: "../styles/fonts/"; // Change the path to the fonts
+@import "bootstrap-sass-official/vendor/assets/stylesheets/bootstrap";
+
+body {
+  padding-top: 0px;
+}
+
+body .container {
+  margin-top: 20px;
+}

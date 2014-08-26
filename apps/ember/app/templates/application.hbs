@@ -7,9 +7,11 @@
         </li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
+      {{#if isAuthenticated}}
         <li>
-          {{#link-to "sessions.signout"}}Signout{{/link-to}}
+          <a href="#" {{action 'signout'}}>Signout</a>
         </li>
+      {{/if}}
       </ul>
     </div>
 </nav>

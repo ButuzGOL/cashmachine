@@ -36,7 +36,7 @@ module.exports = function (grunt) {
                 tasks: ['compass:server']
             },
             neuter: {
-                files: ['<%= yeoman.app %>/scripts/{,*/}*.js'],
+                files: ['<%= yeoman.app %>/scripts/**/*.js'],
                 tasks: ['neuter']
             },
             livereload: {
@@ -326,7 +326,8 @@ module.exports = function (grunt) {
                 options: {
                     filepathTransform: function (filepath) {
                         return yeomanConfig.app + '/' + filepath;
-                    }
+                    },
+                    // includeSourceMap: true
                 },
                 src: '<%= yeoman.app %>/scripts/app.js',
                 dest: '.tmp/scripts/combined-scripts.js'

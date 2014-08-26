@@ -5,8 +5,7 @@ Ember.Router.map(function () {
   });
 
   this.resource('sessions', function() {
-    this.route('signin');
-    this.route('signout');
+    this.route('new');
   });
 
 });

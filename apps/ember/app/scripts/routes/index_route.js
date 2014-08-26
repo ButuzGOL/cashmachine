@@ -1,3 +1,3 @@
-EmberApp.IndexRoute = Ember.Route.extend({
+EmberApp.IndexRoute = EmberApp.AuthenticatedRoute.extend({
 });
 

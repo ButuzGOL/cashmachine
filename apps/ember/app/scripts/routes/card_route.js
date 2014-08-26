@@ -1,6 +1,6 @@
-EmberApp.CardRoute = Ember.Route.extend({
+EmberApp.CardRoute = EmberApp.AuthenticatedRoute.extend({
   model: function(params) {
-    return this.get('store').find('card', params.card_id).then(function(card) {
+    return this.get('store').find('card', 'me').then(function(card) {
       console.log(card);
     });
   }

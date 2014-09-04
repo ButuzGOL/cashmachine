@@ -10,7 +10,7 @@ require('scripts/store');
 require('scripts/models/*');
 require('scripts/routes/**/*');
 require('scripts/components/*');
-require('scripts/views/*');
+require('scripts/views/**/*');
 require('scripts/router');
 
 

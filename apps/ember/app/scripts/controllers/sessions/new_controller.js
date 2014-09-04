@@ -1,4 +1,5 @@
 EmberApp.SessionsNewController = Ember.ObjectController.extend({
+  needs: ['sessionsNew'],
   number: '',
   pin: '',
   errorMessage: '',
@@ -33,11 +34,11 @@ EmberApp.SessionsNewController = Ember.ObjectController.extend({
     }
   }.observes('token'),
   actions: {
-    login: function() {
+    signin: function() {
       var self = this,
           stage = this.get('stage'),
           data = {
-            number: this.get('number')
+            number: this.get('number').replace(/-/g, '')
           };
 
       if (stage === 1) {
@@ -64,12 +65,11 @@ EmberApp.SessionsNewController = Ember.ObjectController.extend({
                 });
                 self.transitionTo('index');
               }, function(jqXHR) {
-                console.log(arguments)
                 self.set('errorMessage', 'Error');
               });
           }
-        }, function() {
-          self.set('errorMessage', 'Error');
+        }, function(jqXHR) {
+          self.set('errorMessage', jqXHR.responseJSON.message);
         });
     },
     cancel: function() {

@@ -17,17 +17,52 @@ angular
     'ngSanitize',
     'ngTouch'
   ])
-  .config(function ($routeProvider) {
+  .config(function($routeProvider) {
+    var checkIsSignin = function($rootScope, $location) {
+      var isSignin = Boolean($rootScope.currentCard);
+
+      if (!isSignin) {
+        $location.url('/sessions/new');
+      }
+    };
+
     $routeProvider
       .when('/', {
         templateUrl: 'views/main.html',
-        controller: 'MainCtrl'
+        controller: 'MainCtrl',
+        controllerAs: 'vm',
+        resolve: {
+          issignin: checkIsSignin
+        }
       })
-      .when('/about', {
-        templateUrl: 'views/about.html',
-        controller: 'AboutCtrl'
+      .when('/sessions/new', {
+        templateUrl: 'views/sessions/new.html',
+        controller: 'SessionsNew',
+        controllerAs: 'vm'
       })
       .otherwise({
         redirectTo: '/'
       });
+  })
+  .config(function($httpProvider) {
+
+    $httpProvider.defaults.withCredentials = true;
+    $httpProvider.defaults.useXDomain = true;
+    delete $httpProvider.defaults.headers.common['X-Requested-With'];
+
+    $httpProvider.responseInterceptors.push(function($q, $location) {
+      return function(promise) {
+        return promise.then(
+          function(response) {
+            return response;
+          },
+          function(response) {
+            if (response.status === 401) {
+              $location.url('/sessions/new');
+            }
+            return $q.reject(response);
+          }
+        );
+      }
+    });
   });

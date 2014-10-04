@@ -10,7 +10,7 @@
 angular.module('cashmachineApp')
   .controller('SessionsNew', SessionsNew);
 
-function SessionsNew($scope, $rootScope, $log, $location, auth, Card) {
+function SessionsNew($scope, $rootScope, $log, $location, auth, Card, $alert) {
     var vm = this;
 
     vm.signin = signin;
@@ -45,12 +45,18 @@ function SessionsNew($scope, $rootScope, $log, $location, auth, Card) {
               .then(function(card) {
                 $rootScope.currentCard = card;
                 $location.path('/');
+                $alert({
+                  title: 'Congratulations!',
+                  content: 'You signin.',
+                  type: 'material',
+                  duration: 3,
+                  dismissable: false
+                });
               }, function() {
                 vm.errorMessage = 'Error';
               });
           }
         }, function(data) {
-
           vm.errorMessage = data.data.message;
         });
     }

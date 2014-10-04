@@ -9,3 +9,20 @@ p {
 nav.navbar-static-top {
   margin-bottom: 20px;
 }
+
+.alert-material {
+  font-family: 'Roboto', sans-serif;
+  outline: none;
+  display: inline-block;
+  background: #323232;
+  color: #f1f1f1;
+  min-height: 48px;
+  padding: 13px 24px 12px;
+  box-shadow: 0 2px 5px 0 rgba(0, 0, 0, .26);
+  z-index: 1;
+  border-radius: 2px;
+  cursor: default;
+  position: fixed;
+  bottom: 12px;
+  right: 12px;
+}

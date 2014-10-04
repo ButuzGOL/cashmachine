@@ -8,7 +8,7 @@
  * Controller of the cashmachineApp
  */
 angular.module('cashmachineApp')
-  .controller('Nav', function($scope, auth, $location, $rootScope) {
+  .controller('Nav', function($scope, auth, $location, $rootScope, $alert) {
     var vm = this;
 
     vm.signout = signout;
@@ -18,6 +18,13 @@ angular.module('cashmachineApp')
         .then(function() {
           $rootScope.currentCard = null;
           $location.path('/sessions/new');
+          $alert({
+            title: 'Congratulations!',
+            content: 'You signout.',
+            type: 'material',
+            duration: 3,
+            dismissable: false
+          });
         });
     }
 

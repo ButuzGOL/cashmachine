@@ -38,8 +38,16 @@ angular
       })
       .when('/sessions/new', {
         templateUrl: 'views/sessions/new.html',
-        controller: 'SessionsNew',
+        controller: 'SessionsNewCtrl',
         controllerAs: 'vm'
+      })
+      .when('/cards/:id', {
+        templateUrl: 'views/cards/view.html',
+        controller: 'CardsViewCtrl',
+        controllerAs: 'vm',
+        resolve: {
+          issignin: checkIsSignin
+        }
       })
       .otherwise({
         redirectTo: '/'

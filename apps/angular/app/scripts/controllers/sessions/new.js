@@ -2,15 +2,15 @@
 
 /**
  * @ngdoc function
- * @name cashmachineApp.controller:SessionsNew
+ * @name cashmachineApp.controller:SessionsNewCtrl
  * @description
- * # SessionsNew
+ * # SessionsNewCtrl
  * Controller of the cashmachineApp
  */
 angular.module('cashmachineApp')
-  .controller('SessionsNew', SessionsNew);
+  .controller('SessionsNewCtrl', SessionsNewCtrl);
 
-function SessionsNew($scope, $rootScope, $log, $location, auth, Card, $alert) {
+function SessionsNewCtrl($scope, $rootScope, $log, $location, auth, Card, $alert) {
     var vm = this;
 
     vm.signin = signin;

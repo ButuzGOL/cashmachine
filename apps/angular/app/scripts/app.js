@@ -33,7 +33,7 @@ angular
         controller: 'MainCtrl',
         controllerAs: 'vm',
         resolve: {
-          issignin: checkIsSignin
+          isSignin: checkIsSignin
         }
       })
       .when('/sessions/new', {
@@ -46,7 +46,15 @@ angular
         controller: 'CardsViewCtrl',
         controllerAs: 'vm',
         resolve: {
-          issignin: checkIsSignin
+          isSignin: checkIsSignin
+        }
+      })
+      .when('/cards/:id/balance', {
+        templateUrl: 'views/cards/balance.html',
+        controller: 'CardsBalanceCtrl',
+        controllerAs: 'vm',
+        resolve: {
+          isSignin: checkIsSignin
         }
       })
       .otherwise({

@@ -6,4 +6,9 @@
   <dt>Balance</dt>
   <dd>{{ currentCard.balance }}</dd>
 </dl>
-<button ng-click="vm.showOperations()">Operations</button>
+<button type="button" ng-if="!vm.showOperations" class="btn btn-default" ng-click="vm.fetchOperations()">Operations</button>
+
+<section ng-if="vm.showOperations">
+  <card-operations operations="vm.cardOperations"></card-operations>
+</section>
+

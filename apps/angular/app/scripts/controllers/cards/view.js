@@ -8,13 +8,18 @@
  * Controller of the cashmachineApp
  */
 angular.module('cashmachineApp')
-  .controller('CardsViewCtrl', function($scope) {
+  .controller('CardsViewCtrl', function($scope, CardOperation) {
     var vm = this;
 
-    vm.showOperations = showOperations;
-    vm.opertions = [];
+    vm.fetchOperations = fetchOperations;
+    vm.cardOpertions = [];
+    vm.showOperations = false;
 
-    function showOperations() {
-
+    function fetchOperations() {
+      CardOperation.index().$promise
+        .then(function(cardOperations) {
+          vm.showOperations = true;
+          vm.cardOperations = cardOperations;
+        });
     }
   });

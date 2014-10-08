@@ -9,6 +9,9 @@
 <button type="button" ng-if="!vm.showOperations" class="btn btn-default" ng-click="vm.fetchOperations()">Operations</button>
 
 <section ng-if="vm.showOperations">
-  <card-operations operations="vm.cardOperations"></card-operations>
+  <h5>Operations</h5>
+  <card-operation ng-repeat="operation in vm.cardOperations" operation="operation"></card-operation>
+  </dl>
+
 </section>
 

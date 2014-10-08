@@ -8,14 +8,30 @@
  * Controller of the cashmachineApp
  */
 angular.module('cashmachineApp')
-  .controller('CardsBalanceCtrl', function($scope) {
+  .controller('CardsBalanceCtrl', function(Card, $rootScope) {
     var vm = this;
 
-    vm.money = 0;
-
     vm.take = take;
+    vm.reset = reset;
+
+    vm.reset();
+
+    function reset() {
+      vm.operation = null;
+      vm.errorMessage = null;
+      vm.money = 0;
+    }
 
     function take() {
-      console.log('1')
+      vm.errorMessage = null;
+
+      Card.take(vm.money)
+        .then(function(data) {
+          vm.operation = data.data;
+          $rootScope.currentCard.balance -= vm.money;
+          vm.money = 0;
+        }, function(data) {
+          vm.errorMessage = data.data.message;
+        });
     }
   });

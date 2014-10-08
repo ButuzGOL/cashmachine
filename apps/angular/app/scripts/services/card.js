@@ -8,6 +8,12 @@
  * Factory in the cashmachineApp.
  */
 angular.module('cashmachineApp')
-  .factory('Card', function(APIROOT, $resource) {
-    return $resource(APIROOT + '/cards/:id', { id: '@id' });
+  .factory('Card', function(APIROOT, $resource, $http) {
+    var Card = $resource(APIROOT + '/cards/:id', { id: '@id' });
+
+    Card.take = function(money) {
+      return $http.put(APIROOT + '/cards/balance', { take: money });
+    };
+
+    return Card;
   });

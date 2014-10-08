@@ -80,6 +80,6 @@ angular
             return $q.reject(response);
           }
         );
-      }
+      };
     });
   });

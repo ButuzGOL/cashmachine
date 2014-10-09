@@ -20,13 +20,14 @@ function SessionsNewCtrl($scope, $rootScope, $log, $location, auth, Card, $alert
 
     function reset() {
       vm.number = null;
+      vm.pin = null;
       vm.stage = 0;
       vm.errorMessage = null;
     }
 
     function signin() {
       var data = {
-        number: vm.number
+        number: vm.number.replace(/-/g, '')
       };
 
       if (vm.stage === 1) {

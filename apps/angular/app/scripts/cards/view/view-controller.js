@@ -7,8 +7,8 @@
  * # CardsViewCtrl
  * Controller of the cashmachineApp
  */
-angular.module('cashmachineApp')
-  .controller('CardsViewCtrl', function($scope, CardOperation) {
+angular.module('cashmachineApp.cards')
+  .controller('CardsViewController', function($scope, CardOperation) {
     var vm = this;
 
     vm.fetchOperations = fetchOperations;

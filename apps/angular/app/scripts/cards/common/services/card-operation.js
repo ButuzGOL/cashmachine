@@ -7,7 +7,7 @@
  * # CardOperation
  * Factory in the cashmachineApp.
  */
-angular.module('cashmachineApp')
+angular.module('cashmachineApp.cards')
   .factory('CardOperation', function(APIROOT, $resource) {
     return $resource(APIROOT + '/cards/me/operations', {}, {
       index: { method: 'GET', isArray: true },

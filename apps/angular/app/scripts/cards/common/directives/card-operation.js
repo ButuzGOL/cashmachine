@@ -6,10 +6,10 @@
  * @description
  * # cardOperation
  */
-angular.module('cashmachineApp')
+angular.module('cashmachineApp.cards')
   .directive('cardOperation', function () {
     return {
-      templateUrl: 'views/partials/card-operation.html',
+      templateUrl: 'scripts/cards/common/directives/card-operation.html',
       restrict: 'E',
       scope: {
         operation: '='

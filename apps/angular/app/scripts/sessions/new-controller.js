@@ -7,10 +7,10 @@
  * # SessionsNewCtrl
  * Controller of the cashmachineApp
  */
-angular.module('cashmachineApp')
-  .controller('SessionsNewCtrl', SessionsNewCtrl);
+angular.module('cashmachineApp.sessions')
+  .controller('SessionsNewController', SessionsNewController);
 
-function SessionsNewCtrl($scope, $rootScope, $log, $location, auth, Card, $alert) {
+function SessionsNewController($scope, $rootScope, $log, $location, auth, Card, $alert) {
     var vm = this;
 
     vm.signin = signin;

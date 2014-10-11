@@ -10,10 +10,11 @@
 angular.module('cashmachineApp')
   .factory('auth', auth);
 
-function auth($http, APIROOT) {
+function auth($http, APIROOT, $rootScope) {
   var service = {
     signin: signin,
-    signout: signout
+    signout: signout,
+    isSignin: isSignin
   };
 
   return service;
@@ -24,5 +25,9 @@ function auth($http, APIROOT) {
 
   function signout() {
     return $http.get(APIROOT + '/signout');
+  }
+
+  function isSignin() {
+    return Boolean($rootScope.currentCard)
   }
 }

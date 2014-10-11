@@ -7,8 +7,8 @@
  * # CardsBalanceCtrl
  * Controller of the cashmachineApp
  */
-angular.module('cashmachineApp')
-  .controller('CardsBalanceCtrl', function(Card, $rootScope) {
+angular.module('cashmachineApp.cards')
+  .controller('CardsBalanceController', function(Card, $rootScope) {
     var vm = this;
 
     vm.take = take;

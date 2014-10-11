@@ -16,47 +16,14 @@ angular
     'ngRoute',
     'ngSanitize',
     'ngTouch',
-    'mgcrea.ngStrap'
+    'mgcrea.ngStrap',
+
+    'cashmachineApp.home',
+    'cashmachineApp.sessions',
+    'cashmachineApp.cards'
   ])
   .config(function($routeProvider) {
-    var checkIsSignin = function($rootScope, $location) {
-      var isSignin = Boolean($rootScope.currentCard);
-
-      if (!isSignin) {
-        $location.url('/sessions/new');
-      }
-    };
-
     $routeProvider
-      .when('/', {
-        templateUrl: 'views/main.html',
-        controller: 'MainCtrl',
-        controllerAs: 'vm',
-        resolve: {
-          isSignin: checkIsSignin
-        }
-      })
-      .when('/sessions/new', {
-        templateUrl: 'views/sessions/new.html',
-        controller: 'SessionsNewCtrl',
-        controllerAs: 'vm'
-      })
-      .when('/cards/:id', {
-        templateUrl: 'views/cards/view.html',
-        controller: 'CardsViewCtrl',
-        controllerAs: 'vm',
-        resolve: {
-          isSignin: checkIsSignin
-        }
-      })
-      .when('/cards/:id/balance', {
-        templateUrl: 'views/cards/balance.html',
-        controller: 'CardsBalanceCtrl',
-        controllerAs: 'vm',
-        resolve: {
-          isSignin: checkIsSignin
-        }
-      })
       .otherwise({
         redirectTo: '/'
       });
@@ -83,3 +50,21 @@ angular
       };
     });
   });
+
+angular.module('cashmachineApp').run(function($location, auth, $rootScope) {
+
+  var routesThatDontRequireAuth = ['/sessions/new'];
+
+  var routeClean = function(route) {
+    return routesThatDontRequireAuth.find(function (noAuthRoute) {
+        return noAuthRoute.indexOf(route) === -1;
+      });
+  };
+
+  $rootScope.$on('$routeChangeStart', function(event, next, current) {
+    if (!routeClean($location.url()) && !auth.isSignin()) {
+      $location.path('/sessions/new');
+    }
+  });
+
+});

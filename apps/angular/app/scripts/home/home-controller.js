@@ -7,7 +7,6 @@
  * # MainCtrl
  * Controller of the cashmachineApp
  */
-angular.module('cashmachineApp')
-  .controller('MainCtrl', function() {
-
+angular.module('cashmachineApp.home')
+  .controller('HomeController', function() {
   });

@@ -8,7 +8,7 @@
  * Controller of the cashmachineApp
  */
 angular.module('cashmachineApp')
-  .controller('Nav', function($scope, auth, $location, $rootScope, $alert) {
+  .controller('NavCotroller', function($scope, auth, $location, $rootScope, $alert) {
     var vm = this;
 
     vm.signout = signout;

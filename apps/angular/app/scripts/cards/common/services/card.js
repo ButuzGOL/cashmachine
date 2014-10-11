@@ -7,7 +7,7 @@
  * # Card
  * Factory in the cashmachineApp.
  */
-angular.module('cashmachineApp')
+angular.module('cashmachineApp.cards')
   .factory('Card', function(APIROOT, $resource, $http) {
     var Card = $resource(APIROOT + '/cards/:id', { id: '@id' });
 

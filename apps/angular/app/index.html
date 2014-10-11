@@ -18,7 +18,7 @@
   </head>
   <body ng-app="cashmachineApp">
     <div id="header-region">
-      <nav class="navbar-inverse navbar-static-top" role="navigation" ng-controller="Nav as vm">
+      <nav class="navbar-inverse navbar-static-top" role="navigation" ng-controller="NavCotroller as vm">
         <div class="container">
           <a class="navbar-brand" href="">Cash Machine</a>
           <ul class="nav navbar-nav">
@@ -55,16 +55,26 @@
         <!-- build:js({.tmp,app}) scripts/scripts.js -->
         <script src="scripts/app.js"></script>
         <script src="scripts/constants.js"></script>
-        <script src="scripts/controllers/main.js"></script>
-        <script src="scripts/services/auth.js"></script>
-        <script src="scripts/controllers/sessions/new.js"></script>
-        <script src="scripts/services/card.js"></script>
-        <script src="scripts/controllers/nav.js"></script>
-        <script src="scripts/controllers/cards/view.js"></script>
-        <script src="scripts/services/card-operation.js"></script>
-        <script src="scripts/directives/card-operation.js"></script>
-        <script src="scripts/controllers/cards/balance.js"></script>
-        <script src="scripts/directives/masked-input.js"></script>
+
+        <script src="scripts/common/directives/masked-input.js"></script>
+        <script src="scripts/common/services/auth.js"></script>
+
+        <script src="scripts/cards/cards.js"></script>
+        <script src="scripts/cards/view/view-controller.js"></script>
+
+        <script src="scripts/cards/balance/balance-controller.js"></script>
+
+        <script src="scripts/cards/common/directives/card-operation.js"></script>
+        <script src="scripts/cards/common/services/card-operation.js"></script>
+        <script src="scripts/cards/common/services/card.js"></script>
+
+        <script src="scripts/nav/nav-controller.js"></script>
+
+        <script src="scripts/home/home.js"></script>
+        <script src="scripts/home/home-controller.js"></script>
+        <script src="scripts/sessions/new.js"></script>
+        <script src="scripts/sessions/new-controller.js"></script>
+
         <!-- endbuild -->
 </body>
 </html>

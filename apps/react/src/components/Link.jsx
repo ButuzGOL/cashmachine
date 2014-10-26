@@ -21,7 +21,6 @@ var Link = React.createClass({
     );
   },
   handleClick(e) {
-    console.log('1');
     e.preventDefault();
     RouteActions.setRoute(this.props.to);
   }

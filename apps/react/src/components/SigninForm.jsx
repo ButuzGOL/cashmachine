@@ -5,28 +5,66 @@
 'use strict';
 
 var React = require('react');
+var AuthActions = require('../actions/AuthActions');
+var AuthStore = require('../stores/AuthStore');
+var RouteActions = require('../actions/RouteActions');
 
 var SigninForm = React.createClass({
   getInitialState() {
     return {
       errorMessage: null,
-      stage: 0
+      stage: 0,
+
+      number: '',
+      pin: ''
     }
   },
-  getDefaultProps() {
-    return {
-      cardNumber: '',
-      pin: ''
+  componentDidMount() {
+    AuthStore.addSigninSuccessListener(this._onSigninSuccess);
+    AuthStore.addSigninFailListener(this._onSigninFail);
+  },
+  componentWillUnmount() {
+    AuthStore.removeSigninSuccessListener(this._onSigninSuccess);
+    AuthStore.removeSigninFailListener(this._onSigninFail);
+  },
+  _onSigninSuccess(stage) {
+    if (stage === 0) {
+      this.refs.number.getDOMNode().value = '';
+      this.setState({
+        errorMessage: null,
+        stage: 1
+      });
+    } else if (stage === 1) {
+    }
+  },
+  _onSigninFail(stage, data) {
+    if (data.message) {
+      this.setState({ errorMessage: data.message });
     }
   },
   handleSubmit(e) {
     e.preventDefault();
-    var number = this.refs.number.getDOMNode().value.trim();
-    this.setState({ stage: 1 });
+    if (this.state.stage === 0) {
+      var number = this.refs.number.getDOMNode().value.trim();
+
+      this.setState({ number: number });
+
+      AuthActions.signin(this.state.stage, {
+        number: number
+      });
+    } else {
+      var pin = this.refs.pin.getDOMNode().value.trim();
+      this.setState({ pin: pin });
+
+      AuthActions.signin(this.state.stage, {
+        number: this.state.number,
+        pin: pin
+      });
+    }
   },
   handleCancel(e) {
     this.refs.pin.getDOMNode().value = '';
-    this.setState({ stage: 0 });
+    this.setState({ stage: 0, pin: '' });
   },
   render() {
     var stageOutput;
@@ -55,7 +93,7 @@ var SigninForm = React.createClass({
           <div className="form-group">
             <label for="pin" className="col-sm-4 control-label">Pin</label>
             <div className="col-sm-8">
-              <input type="password" className="form-control" name="pin" id="pin" ref="pin" />
+              <input type="password" className="form-control" id="pin" name="pin" ref="pin" />
             </div>
           </div>
           <div className="form-group">

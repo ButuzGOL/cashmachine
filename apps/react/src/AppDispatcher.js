@@ -28,6 +28,7 @@ var AppDispatcher = copyProperties(new Dispatcher(), {
    * type and additional data coming from the view.
    */
   handleViewAction(action) {
+    console.log('Action', action);
     var payload = {
       source: PayloadSources.VIEW_ACTION,
       action

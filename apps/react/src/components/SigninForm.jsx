@@ -8,8 +8,10 @@ var React = require('react');
 var AuthActions = require('../actions/AuthActions');
 var AuthStore = require('../stores/AuthStore');
 var RouteActions = require('../actions/RouteActions');
+var addons = require('react-addons');
 
 var SigninForm = React.createClass({
+  mixins: [addons.LinkedStateMixin],
   getInitialState() {
     return {
       errorMessage: null,
@@ -29,12 +31,14 @@ var SigninForm = React.createClass({
   },
   _onSigninSuccess(stage) {
     if (stage === 0) {
-      this.refs.number.getDOMNode().value = '';
       this.setState({
         errorMessage: null,
         stage: 1
       });
     } else if (stage === 1) {
+      setTimeout(function() {
+        RouteActions.setRoute('/');
+      }, 1);
     }
   },
   _onSigninFail(stage, data) {
@@ -45,25 +49,17 @@ var SigninForm = React.createClass({
   handleSubmit(e) {
     e.preventDefault();
     if (this.state.stage === 0) {
-      var number = this.refs.number.getDOMNode().value.trim();
-
-      this.setState({ number: number });
-
       AuthActions.signin(this.state.stage, {
-        number: number
+        number: this.state.number
       });
     } else {
-      var pin = this.refs.pin.getDOMNode().value.trim();
-      this.setState({ pin: pin });
-
       AuthActions.signin(this.state.stage, {
         number: this.state.number,
-        pin: pin
+        pin: this.state.pin
       });
     }
   },
   handleCancel(e) {
-    this.refs.pin.getDOMNode().value = '';
     this.setState({ stage: 0, pin: '' });
   },
   render() {
@@ -77,7 +73,7 @@ var SigninForm = React.createClass({
               Card number
             </label>
             <div className="col-sm-8">
-              <input type="text" className="form-control" id="number" name="number" ref="number" />
+              <input type="text" className="form-control" id="number" name="number" valueLink={this.linkState('number')} />
             </div>
           </div>
           <div className="form-group">
@@ -93,7 +89,7 @@ var SigninForm = React.createClass({
           <div className="form-group">
             <label for="pin" className="col-sm-4 control-label">Pin</label>
             <div className="col-sm-8">
-              <input type="password" className="form-control" id="pin" name="pin" ref="pin" />
+              <input type="password" className="form-control" id="pin" name="pin" valueLink={this.linkState('pin')} />
             </div>
           </div>
           <div className="form-group">

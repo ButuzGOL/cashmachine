@@ -8,7 +8,7 @@ var React = require('react');
 var DefaultLayout = require('../../layouts/DefaultLayout.jsx');
 var SigninForm = require('../../components/SigninForm.jsx');
 
-var HomePage = React.createClass({
+var SessionsNewPage = React.createClass({
   getDefaultProps() {
     return {
       title: 'CashMachine Signin',
@@ -27,4 +27,4 @@ var HomePage = React.createClass({
   }
 });
 
-module.exports = HomePage;
+module.exports = SessionsNewPage;

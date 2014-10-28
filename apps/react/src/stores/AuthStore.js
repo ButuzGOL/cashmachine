@@ -46,7 +46,7 @@ var AuthStore = merge(EventEmitter.prototype, {
   }
 });
 
-AppDispatcher.register(function(payload) {
+AuthStore.dispatchToken = AppDispatcher.register(function(payload) {
   var action = payload.action;
 
   switch(action.actionType) {

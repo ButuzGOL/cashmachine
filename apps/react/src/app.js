@@ -34,13 +34,13 @@ function render(page) {
 var routes = {
   '/': () => render(require('./pages/Index.jsx')),
   '/sessions/new': () => render(require('./pages/sessions/New.jsx')),
+  '/cards/me': () => render(require('./pages/cards/View.jsx'))
 };
 
 // Initialize a router
-var router = new Router(routes).configure({html5history: true}).init();
+var router = new Router(routes).configure({html5history: false}).init();
 
-AppDispatcher.register((payload) => {
-
+AppDispatcher.register(function(payload) {
   var action = payload.action;
 
   if (action.actionType === ActionTypes.SET_CURRENT_ROUTE) {

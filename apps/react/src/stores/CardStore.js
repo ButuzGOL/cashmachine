@@ -15,7 +15,22 @@ function fetch(id) {
     .get(config.apiRoot + '/cards/' + id)
     .end(function(res) {
       if (res.ok) {
-        CardActions.changed(res.body);
+        CardStore.set(res.body);
+        CardActions.changed();
+      } else {
+        AppActions.requestFail();
+      }
+    });
+}
+
+function fetchOperations(id) {
+
+  superagent
+    .get(config.apiRoot + '/cards/' + id + '/operations')
+    .end(function(res) {
+      if (res.ok) {
+        CardStore.setOperations(res.body);
+        CardActions.changed();
       } else {
         AppActions.requestFail();
       }
@@ -25,10 +40,17 @@ function fetch(id) {
 var CardStore = merge(EventEmitter.prototype, {
   card: {
     id: null,
-    balance: null
+    balance: null,
+    operations: []
   },
   set(data) {
     this.card = merge(this.card, data);
+  },
+  setOperations(data) {
+    this.card.operations = data;
+  },
+  fetchOperations(id) {
+    fetchOperations(id);
   },
   get() {
     return this.card;
@@ -53,7 +75,6 @@ CardStore.dispatchToken = AppDispatcher.register(function(payload) {
       break;
 
     case ActionTypes.CARD_CHANGED:
-      CardStore.set(action.data);
       CardStore.emitChange();
       break;
 

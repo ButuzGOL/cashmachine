@@ -15,6 +15,18 @@ var CardActions = {
       actionType: ActionTypes.CARD_CHANGED,
       data: data
     });
+  },
+  takeMoneySuccess: function(operation) {
+    AppDispatcher.handleViewAction({
+      actionType: ActionTypes.CARD_TAKE_MONEY_SUCCESS,
+      operation: operation
+    });
+  },
+  takeMoneyFail: function(data) {
+    AppDispatcher.handleViewAction({
+      actionType: ActionTypes.CARD_TAKE_MONEY_FAIL,
+      data: data
+    });
   }
 };
 

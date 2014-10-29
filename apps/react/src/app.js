@@ -34,7 +34,8 @@ function render(page) {
 var routes = {
   '/': () => render(require('./pages/Index.jsx')),
   '/sessions/new': () => render(require('./pages/sessions/New.jsx')),
-  '/cards/me': () => render(require('./pages/cards/View.jsx'))
+  '/cards/me': () => render(require('./pages/cards/View.jsx')),
+  '/cards/me/balance': () => render(require('./pages/cards/Balance.jsx'))
 };
 
 // Initialize a router

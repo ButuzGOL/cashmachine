@@ -8,6 +8,8 @@ var superagent = require('superagent');
 var AppActions = require('../actions/AppActions');
 
 var CHANGE_EVENT = 'change';
+var TAKE_MONEY_SUCCESS_EVENT = 'takeMoneySuccess';
+var TAKE_MONEY_FAIL_EVENT = 'takeMoneyFail';
 
 function fetch(id) {
 
@@ -37,6 +39,19 @@ function fetchOperations(id) {
     });
 }
 
+function takeMoney(id, data) {
+  superagent
+    .put(config.apiRoot + '/cards/' + id + '/balance')
+    .send(data)
+    .end(function(res) {
+      if (res.ok) {
+        CardActions.takeMoneySuccess(res.body);
+      } else {
+        CardActions.takeMoneyFail(res.body);
+      }
+    });
+}
+
 var CardStore = merge(EventEmitter.prototype, {
   card: {
     id: null,
@@ -52,6 +67,9 @@ var CardStore = merge(EventEmitter.prototype, {
   fetchOperations(id) {
     fetchOperations(id);
   },
+  takeMoney(id, data) {
+    takeMoney(id, data);
+  },
   get() {
     return this.card;
   },
@@ -63,6 +81,24 @@ var CardStore = merge(EventEmitter.prototype, {
   },
   removeChangeListener: function(callback) {
     this.removeListener(CHANGE_EVENT, callback);
+  },
+  emitTakeMoneySuccess: function(operation) {
+    this.emit(TAKE_MONEY_SUCCESS_EVENT, operation);
+  },
+  addTakeMoneySuccessListener: function(callback) {
+    this.on(TAKE_MONEY_SUCCESS_EVENT, callback);
+  },
+  removeTakeMoneySuccessListener: function(callback) {
+    this.removeListener(TAKE_MONEY_SUCCESS_EVENT, callback);
+  },
+  emitTakeMoneyFail: function(data) {
+    this.emit(TAKE_MONEY_FAIL_EVENT, data);
+  },
+  addTakeMoneyFailListener: function(callback) {
+    this.on(TAKE_MONEY_FAIL_EVENT, callback);
+  },
+  removeTakeMoneyFailListener: function(callback) {
+    this.removeListener(TAKE_MONEY_FAIL_EVENT, callback);
   }
 });
 
@@ -76,6 +112,14 @@ CardStore.dispatchToken = AppDispatcher.register(function(payload) {
 
     case ActionTypes.CARD_CHANGED:
       CardStore.emitChange();
+      break;
+
+    case ActionTypes.CARD_TAKE_MONEY_SUCCESS:
+      CardStore.emitTakeMoneySuccess(action.operation);
+      break;
+
+    case ActionTypes.CARD_TAKE_MONEY_FAIL:
+      CardStore.emitTakeMoneyFail(action.data);
       break;
 
     default:

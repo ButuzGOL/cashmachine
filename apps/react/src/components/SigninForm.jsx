@@ -7,11 +7,11 @@
 var React = require('react');
 var AuthActions = require('../actions/AuthActions');
 var AuthStore = require('../stores/AuthStore');
-var RouteActions = require('../actions/RouteActions');
 var addons = require('react-addons');
+var { Navigation } = require('react-router');
 
 var SigninForm = React.createClass({
-  mixins: [addons.LinkedStateMixin],
+  mixins: [addons.LinkedStateMixin, Navigation],
   getInitialState() {
     return {
       errorMessage: null,
@@ -36,9 +36,7 @@ var SigninForm = React.createClass({
         stage: 1
       });
     } else if (stage === 1) {
-      setTimeout(function() {
-        RouteActions.setRoute('/');
-      }, 1);
+      this.transitionTo('/');
     }
   },
   _onSigninFail(stage, data) {

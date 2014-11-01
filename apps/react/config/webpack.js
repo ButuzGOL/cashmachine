@@ -19,10 +19,10 @@ var webpack = require('webpack');
  */
 module.exports = function(release) {
   return {
-    entry: './src/app.js',
+    entry: './src/index.js',
 
     output: {
-      filename: 'app.js',
+      filename: 'bundle.js',
       path: './build/',
       publicPatch: './build/'
     },

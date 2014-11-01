@@ -1,11 +1,8 @@
-/**
- * @jsx React.DOM
- */
+/** @jsx React.DOM */
 
 'use strict';
 
 var React = require('react');
-var DefaultLayout = require('../../layouts/DefaultLayout.jsx');
 var TakeMoneyForm = require('../../components/TakeMoneyForm.jsx');
 var CardStore = require('../../stores/CardStore');
 var CardOperationInfo = require('../../components/CardOperationInfo.jsx');
@@ -16,14 +13,8 @@ var CardsBalancePage = React.createClass({
       operation: null
     }
   },
-  getDefaultProps() {
-    return {
-      title: 'CashMachine Card Balance',
-      layout: DefaultLayout
-    };
-  },
   handleTakeMoneySubmit(data) {
-    CardStore.takeMoney('me', data)
+    CardStore.takeMoney(this.props.params.id, data)
   },
   componentDidMount() {
     CardStore.addTakeMoneySuccessListener(this._onTakeMoneySuccess);

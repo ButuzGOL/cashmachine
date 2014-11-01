@@ -5,9 +5,9 @@
 'use strict';
 
 var React = require('react');
-var RouteActions = require('../actions/RouteActions');
 var addons = require('react-addons');
 var CardStore = require('../stores/CardStore');
+var { Navigation } = require('react-router');
 
 var TakeMoneyForm = React.createClass({
   mixins: [addons.LinkedStateMixin],
@@ -38,7 +38,7 @@ var TakeMoneyForm = React.createClass({
     this.setState({ errorMessage: data.message });
   },
   handleCancel(e) {
-    RouteActions.setRoute('/');
+    Navigation.transitionTo('/');
   },
   render() {
     return (

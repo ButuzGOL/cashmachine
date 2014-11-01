@@ -1,11 +1,8 @@
-/**
- * @jsx React.DOM
- */
+/** @jsx React.DOM */
 
 'use strict';
 
 var React = require('react');
-var DefaultLayout = require('../../layouts/DefaultLayout.jsx');
 var CardStore = require('../../stores/CardStore');
 var CardActions = require('../../actions/CardActions');
 var CardInfo = require('../../components/CardInfo.jsx');
@@ -18,12 +15,6 @@ var CardsViewPage = React.createClass({
       showOperations: false
     };
   },
-  getDefaultProps() {
-    return {
-      title: 'CashMachine Card Info',
-      layout: DefaultLayout
-    };
-  },
   componentDidMount() {
     CardStore.addChangeListener(this._onChange);
 
@@ -33,7 +24,7 @@ var CardsViewPage = React.createClass({
     CardStore.removeChangeListener(this._onChange);
   },
   requestData() {
-    CardActions.fetch('me');
+    CardActions.fetch(this.props.params.id);
   },
   _onChange() {
     this.setState({
@@ -44,7 +35,7 @@ var CardsViewPage = React.createClass({
     e.preventDefault();
 
     this.setState({ showOperations: true });
-    CardStore.fetchOperations('me');
+    CardStore.fetchOperations(this.props.params.id);
   },
   render() {
 

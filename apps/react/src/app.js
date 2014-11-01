@@ -1,52 +1,37 @@
-/*!
- * Facebook React Starter Kit | https://github.com/kriasoft/react-starter-kit
- * Copyright (c) KriaSoft, LLC. All rights reserved. See LICENSE.txt
- */
+/** @jsx React.DOM */
 
 'use strict';
 
-var React = require('react');
-var copyProperties = require('react/lib/copyProperties');
-var {Router} = require('director');
-var AppDispatcher = require('./AppDispatcher');
-var ActionTypes = require('./constants/ActionTypes');
+var React = require('react'),
+    { PropTypes } = React,
+    Navbar = require('./components/Navbar.jsx'),
+    Link = require('react-router').Link;
 
-// Export React so the dev tools can find it
-(window !== window.top ? window.top : window).React = React;
+var App = React.createClass({
+  propTypes: {
+    activeRouteHandler: PropTypes.func
+  },
 
-/**
- * Check if Page component has a layout property; and if yes, wrap the page
- * into the specified layout, then mount to document.body.
- */
-function render(page) {
-  var child, props = {};
-  while (page.defaultProps.layout) {
-    child = page(props, child);
-    copyProperties(props, page.defaultProps);
-    page = page.defaultProps.layout;
+  render() {
+    return (
+      <div>
+        <Navbar />
+        <div className="container">
+          <this.props.activeRouteHandler />
+          <div className="navbar-footer">
+            <div className="container">
+              <p className="text-muted">
+                <span>© Pampam</span>
+                <span>
+                  <Link to="/">Home</Link>
+                </span>
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    );
   }
-  React.renderComponent(page(props, child), document.body);
-  document.title = props.title;
-}
-
-// Define URL routes
-// See https://github.com/flatiron/director
-var routes = {
-  '/': () => render(require('./pages/Index.jsx')),
-  '/sessions/new': () => render(require('./pages/sessions/New.jsx')),
-  '/cards/me': () => render(require('./pages/cards/View.jsx')),
-  '/cards/me/balance': () => render(require('./pages/cards/Balance.jsx'))
-};
-
-// Initialize a router
-var router = new Router(routes).configure({html5history: false}).init();
-
-AppDispatcher.register(function(payload) {
-  var action = payload.action;
-
-  if (action.actionType === ActionTypes.SET_CURRENT_ROUTE) {
-      router.setRoute(action.route);
-  }
-
-  return true; // No errors.  Needed by promise in Dispatcher.
 });
+
+module.exports = App;

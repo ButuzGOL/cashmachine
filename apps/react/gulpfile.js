@@ -85,24 +85,6 @@ gulp.task('images', function() {
     .pipe($.size({title: 'images'}));
 });
 
-// HTML pages
-gulp.task('pages', function() {
-  src.pages = ['src/pages/**/*.jsx', 'src/pages/404.html'];
-  var render = $.render({template: './src/pages/_template.html'})
-    .on('error', function(err) { console.log(err); render.end(); });
-  return gulp.src(src.pages)
-    .pipe($.changed(DEST, {extension: '.html'}))
-    .pipe($.if('*.jsx', render))
-    .pipe($.replace('UA-XXXXX-X', GOOGLE_ANALYTICS_ID))
-    .pipe($.if(RELEASE, $.htmlmin({
-      removeComments: true,
-      collapseWhitespace: true,
-      minifyJS: true
-    }), $.jsbeautifier()))
-    .pipe(gulp.dest(DEST))
-    .pipe($.size({title: 'pages'}));
-});
-
 // CSS style sheets
 gulp.task('styles', function() {
   src.styles = 'src/styles/**/*.{css,less}';
@@ -148,7 +130,7 @@ gulp.task('bundle', function(cb) {
 
 // Build the app from source code
 gulp.task('build', ['clean'], function(cb) {
-  runSequence(['vendor', 'assets', 'images', 'pages', 'styles', 'bundle'], cb);
+  runSequence(['vendor', 'assets', 'images', 'styles', 'bundle'], cb);
 });
 
 // Launch a lightweight HTTP Server
@@ -185,7 +167,6 @@ gulp.task('serve', function(cb) {
 
     gulp.watch(src.assets, ['assets']);
     gulp.watch(src.images, ['images']);
-    gulp.watch(src.pages.concat(['src/components/**/*.jsx']), ['pages']);
     gulp.watch(src.styles, ['styles']);
     gulp.watch(DEST + '/**/*.*', function(file) {
       browserSync.reload(path.relative(__dirname, file.path));
@@ -193,34 +174,3 @@ gulp.task('serve', function(cb) {
     cb();
   });
 });
-
-// Deploy to GitHub Pages
-gulp.task('deploy', function() {
-
-  // Remove temp folder
-  if (argv.clean) {
-    var os = require('os');
-    var path = require('path');
-    var repoPath = path.join(os.tmpdir(), 'tmpRepo');
-    $.util.log('Delete ' + $.util.colors.magenta(repoPath));
-    del.sync(repoPath, {force: true});
-  }
-
-  return gulp.src(DEST + '/**/*')
-    .pipe($.if('**/robots.txt', !argv.production ? $.replace('Disallow:', 'Disallow: /') : $.util.noop()))
-    .pipe($.ghPages({
-      remoteUrl: 'https://github.com/{name}/{name}.github.io.git',
-      branch: 'master'
-    }));
-});
-
-// Run PageSpeed Insights
-// Update `url` below to the public URL for your site
-gulp.task('pagespeed', pagespeed.bind(null, {
-  // By default, we use the PageSpeed Insights
-  // free (no API key) tier. You can use a Google
-  // Developer API key if you have one. See
-  // http://goo.gl/RkN0vE for info key: 'YOUR_API_KEY'
-  url: 'https://example.com',
-  strategy: 'mobile'
-}));

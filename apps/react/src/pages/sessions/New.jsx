@@ -1,20 +1,11 @@
-/**
- * @jsx React.DOM
- */
+/** @jsx React.DOM */
 
 'use strict';
 
 var React = require('react');
-var DefaultLayout = require('../../layouts/DefaultLayout.jsx');
 var SigninForm = require('../../components/SigninForm.jsx');
 
 var SessionsNewPage = React.createClass({
-  getDefaultProps() {
-    return {
-      title: 'CashMachine Signin',
-      layout: DefaultLayout
-    };
-  },
   render() {
     return (
       <div className="row">

@@ -3,7 +3,7 @@
 'use strict';
 
 var React = require('react');
-var Link = require('react-router').Link;
+var { Link } = require('react-router');
 
 var HomePage = React.createClass({
   render() {

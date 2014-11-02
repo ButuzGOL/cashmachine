@@ -2,9 +2,7 @@
 
 'use strict';
 
-var Routes = require('react-router').Routes,
-    Route = require('react-router').Route,
-    DefaultRoute = require('react-router').DefaultRoute,
+var { Route, DefaultRoute, Routes } = require('react-router'),
     App = require('./App'),
     HomePage = require('./pages/Index.jsx'),
     SessionsNew = require('./pages/sessions/New.jsx'),

@@ -53,13 +53,6 @@
     "webpack": "^1.4.8",
     "webpack-dev-server": "^1.6.5"
   },
-  "jest": {
-    "rootDir": "src",
-    "scriptPreprocessor": "../config/preprocessor.js",
-    "unmockedModulePathPatterns": [
-      "react"
-    ]
-  },
   "scripts": {
     "start": "gulp",
     "test": "jest",

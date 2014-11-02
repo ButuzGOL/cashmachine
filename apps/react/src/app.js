@@ -5,11 +5,9 @@
 var React = require('react'),
     { PropTypes } = React,
     Navbar = require('./components/Navbar.jsx'),
-    Link = require('react-router').Link,
-    CurrentPath = require('react-router').CurrentPath,
+    { Link, Navigation } = require('react-router'),
     AuthStore = require('./stores/AuthStore'),
-    jquery = require('jquery'),
-    { Navigation } = require('react-router');
+    jquery = require('jquery');
 
 window['React'] = React;
 window['jQuery'] = jquery;
@@ -35,7 +33,8 @@ var App = React.createClass({
       return true;
     }
 
-    if (['/cards/me', '/cards/me/balance', '/'].indexOf(window.location.hash.slice(1)) !== -1) {
+    if (['/cards/me', '/cards/me/balance', '/']
+        .indexOf(window.location.hash.slice(1)) !== -1) {
       this.transitionTo('/sessions/new');
       return false;
     } else {
@@ -54,7 +53,7 @@ var App = React.createClass({
           <div className="navbar-footer">
             <div className="container">
               <p className="text-muted">
-                <span>© Pampam</span>
+                <span>© Cashmachine</span>
                 <span>
                   <Link to="/">Home</Link>
                 </span>

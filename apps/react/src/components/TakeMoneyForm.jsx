@@ -10,7 +10,7 @@ var CardStore = require('../stores/CardStore');
 var { Navigation } = require('react-router');
 
 var TakeMoneyForm = React.createClass({
-  mixins: [addons.LinkedStateMixin],
+  mixins: [addons.LinkedStateMixin, Navigation],
   getInitialState() {
     return {
       errorMessage: null,
@@ -38,7 +38,7 @@ var TakeMoneyForm = React.createClass({
     this.setState({ errorMessage: data.message });
   },
   handleCancel(e) {
-    Navigation.transitionTo('/');
+    this.transitionTo('/');
   },
   render() {
     return (

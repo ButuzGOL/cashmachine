@@ -17,6 +17,7 @@ var CardsBalancePage = React.createClass({
     CardStore.takeMoney('me', data)
   },
   componentDidMount() {
+    // TODO: Can be done with store only event on change will be
     CardStore.addTakeMoneySuccessListener(this._onTakeMoneySuccess);
   },
   componentWillUnmount() {

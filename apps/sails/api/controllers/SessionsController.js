@@ -17,7 +17,7 @@ module.exports = {
       if (err) {
         return res.badRequest(err);
       } else if (!card) {
-        return res.badRequest({ message: 'Wrond data' });
+        return res.badRequest({ message: 'Wrong data' });
       }
 
       if (card.blocked) {
@@ -42,7 +42,7 @@ module.exports = {
           return;
         }
 
-        return res.badRequest({ message: 'Wrond data' });
+        return res.badRequest({ message: 'Wrong data' });
       }
 
       if (req.body.pin) {
@@ -57,7 +57,7 @@ module.exports = {
   },
   signout: function(req, res) {
     req.session.destroy();
-    
+
     res.json(200);
   }
 };

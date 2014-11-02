@@ -24,7 +24,7 @@ var CardsViewPage = React.createClass({
     CardStore.removeChangeListener(this._onChange);
   },
   requestData() {
-    CardActions.fetch('me');
+    CardStore.fetch('me');
   },
   _onChange() {
     this.setState({

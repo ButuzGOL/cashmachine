@@ -1,13 +1,11 @@
-/**
- * @jsx React.DOM
- */
+/** @jsx React.DOM */
+
 'use strict';
 
 var React = require('react');
-var Link = require('react-router').Link;
+var { Link, Navigation } = require('react-router');
 var AuthStore = require('../stores/AuthStore');
 var AuthActions = require('../actions/AuthActions');
-var { Navigation } = require('react-router');
 
 var Navbar = React.createClass({
   mixins: [Navigation],
@@ -20,21 +18,16 @@ var Navbar = React.createClass({
     }
   },
   componentDidMount() {
-    AuthStore.addSigninSuccessListener(this._onSigninSuccess);
-    AuthStore.addSignoutSuccessListener(this._onSignoutSuccess);
+    AuthStore.addChangeListener(this._onChange);
   },
   componentWillUnmount() {
-    AuthStore.removeSigninSuccessListener(this._onSigninSuccess);
-    AuthStore.removeSignoutSuccessListener(this._onSignoutSuccess);
+    AuthStore.removeChangeListener(this._onChange);
   },
-  _onSigninSuccess(stage) {
-    if (stage === 1) {
-      this.setState(this.getSigninState());
-    }
-  },
-  _onSignoutSuccess(stage) {
+  _onChange(stage) {
     this.setState(this.getSigninState());
-    this.transitionTo('/sessions/new');
+    if (!this.state.isSignin) {
+      this.transitionTo('/sessions/new');
+    }
   },
   handleSignout(e) {
     e.preventDefault();

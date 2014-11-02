@@ -47,46 +47,50 @@ var CardStore = merge(EventEmitter.prototype, {
     balance: null,
     operations: []
   },
+  fetch: fetch,
   set(data) {
     this.card = merge(this.card, data);
   },
   setOperations(data) {
     this.card.operations = data;
   },
-  fetchOperations(id) {
-    fetchOperations(id);
-  },
-  takeMoney(id, data) {
-    takeMoney(id, data);
-  },
+
+  fetchOperations: fetchOperations,
+
+  takeMoney: takeMoney,
+
   get() {
     return this.card;
   },
-  emitChange: function() {
+
+  // TODO: Move this to one 3 general methods
+  emitChange() {
     this.emit(CHANGE_EVENT);
   },
-  addChangeListener: function(callback) {
+  addChangeListener(callback) {
     this.on(CHANGE_EVENT, callback);
   },
-  removeChangeListener: function(callback) {
+  removeChangeListener(callback) {
     this.removeListener(CHANGE_EVENT, callback);
   },
-  emitTakeMoneySuccess: function(operation) {
+
+  emitTakeMoneySuccess(operation) {
     this.emit(TAKE_MONEY_SUCCESS_EVENT, operation);
   },
-  addTakeMoneySuccessListener: function(callback) {
+  addTakeMoneySuccessListener(callback) {
     this.on(TAKE_MONEY_SUCCESS_EVENT, callback);
   },
-  removeTakeMoneySuccessListener: function(callback) {
+  removeTakeMoneySuccessListener(callback) {
     this.removeListener(TAKE_MONEY_SUCCESS_EVENT, callback);
   },
-  emitTakeMoneyFail: function(data) {
+
+  emitTakeMoneyFail(data) {
     this.emit(TAKE_MONEY_FAIL_EVENT, data);
   },
-  addTakeMoneyFailListener: function(callback) {
+  addTakeMoneyFailListener(callback) {
     this.on(TAKE_MONEY_FAIL_EVENT, callback);
   },
-  removeTakeMoneyFailListener: function(callback) {
+  removeTakeMoneyFailListener(callback) {
     this.removeListener(TAKE_MONEY_FAIL_EVENT, callback);
   }
 });
@@ -95,10 +99,6 @@ CardStore.dispatchToken = AppDispatcher.register(function(payload) {
   var action = payload.action;
 
   switch(action.actionType) {
-    case ActionTypes.CARD_FETCH:
-      fetch(action.id);
-      break;
-
     case ActionTypes.CARD_CHANGED:
       CardStore.emitChange();
       break;

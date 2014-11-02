@@ -4,8 +4,8 @@ var AppDispatcher = require('../AppDispatcher');
 var ActionTypes = require('../constants/ActionTypes');
 
 var AppActions = {
-  requestFail: function() {
-    AppDispatcher.handleViewAction({
+  requestFail() {
+    AppDispatcher.handleServerAction({
       actionType: ActionTypes.REQUEST_FAIL
     });
   }

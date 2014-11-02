@@ -8,61 +8,63 @@ var React = require('react');
 var AuthActions = require('../actions/AuthActions');
 var AuthStore = require('../stores/AuthStore');
 var addons = require('react-addons');
+var merge = require('react/lib/merge');
 var { Navigation } = require('react-router');
-var jquery = require('jquery');
+
+function getAuthState() {
+  return {
+    stage: AuthStore.stage
+  };
+}
 
 var SigninForm = React.createClass({
   mixins: [addons.LinkedStateMixin, Navigation],
   getInitialState() {
-    return {
+    return merge({
       errorMessage: null,
-      stage: 0,
 
       number: '',
       pin: ''
-    }
+    }, getAuthState());
   },
   componentDidMount() {
-    AuthStore.addSigninSuccessListener(this._onSigninSuccess);
     AuthStore.addSigninFailListener(this._onSigninFail);
-
-    // Wont work propert
-    // jQuery(this.refs.number.getDOMNode()).mask('999-999-999');
+    AuthStore.addChangeListener(this._onChange);
   },
   componentWillUnmount() {
-    AuthStore.removeSigninSuccessListener(this._onSigninSuccess);
     AuthStore.removeSigninFailListener(this._onSigninFail);
+    AuthStore.removeChangeListener(this._onChange);
   },
-  _onSigninSuccess(stage) {
-    if (stage === 0) {
-      this.setState({
-        errorMessage: null,
-        stage: 1
-      });
-    } else if (stage === 1) {
-      this.transitionTo('/');
-    }
-  },
-  _onSigninFail(stage, data) {
+  _onSigninFail(data) {
     if (data.message) {
       this.setState({ errorMessage: data.message });
     }
   },
+  _onChange() {
+    if (AuthStore.isSignin) {
+      this.transitionTo('/');
+      return;
+    }
+
+    this.setState(merge({
+      errorMessage: null,
+      stage: AuthStore.stage
+    }, getAuthState()));
+  },
   handleSubmit(e) {
     e.preventDefault();
     if (this.state.stage === 0) {
-      AuthActions.signin(this.state.stage, {
-        number: this.state.number
-      });
+      AuthStore.signin({ number: this.state.number });
     } else {
-      AuthActions.signin(this.state.stage, {
+      AuthStore.signin({
         number: this.state.number,
         pin: this.state.pin
       });
     }
   },
   handleCancel(e) {
-    this.setState({ stage: 0, pin: '' });
+    AuthStore.stage = 0;
+    this.setState(merge({ pin: '' }, getAuthState() ));
   },
   render() {
     var stageOutput;
@@ -108,7 +110,7 @@ var SigninForm = React.createClass({
       <form className="form-horizontal" role="form" onSubmit={this.handleSubmit}>
         { this.state.errorMessage ?
           <p className="bg-danger">{this.state.errorMessage}</p>
-          : null}
+          : null }
         {stageOutput}
       </form>
     );

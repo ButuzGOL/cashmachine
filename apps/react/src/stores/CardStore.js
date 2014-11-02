@@ -4,7 +4,7 @@ var ActionTypes = require('../constants/ActionTypes');
 var merge = require('react/lib/merge');
 var CardActions = require('../actions/CardActions');
 var config = require('../config');
-var superagent = require('superagent');
+var jquery = require('jquery');
 var AppActions = require('../actions/AppActions');
 
 var CHANGE_EVENT = 'change';
@@ -12,43 +12,32 @@ var TAKE_MONEY_SUCCESS_EVENT = 'takeMoneySuccess';
 var TAKE_MONEY_FAIL_EVENT = 'takeMoneyFail';
 
 function fetch(id) {
-
-  superagent
-    .get(config.apiRoot + '/cards/' + id)
-    .end(function(res) {
-      if (res.ok) {
-        CardStore.set(res.body);
-        CardActions.changed();
-      } else {
-        AppActions.requestFail();
-      }
+  jquery.get(config.apiRoot + '/cards/' + id)
+    .done(function(data) {
+      CardStore.set(data);
+      CardActions.changed();
     });
 }
 
 function fetchOperations(id) {
-
-  superagent
-    .get(config.apiRoot + '/cards/' + id + '/operations')
-    .end(function(res) {
-      if (res.ok) {
-        CardStore.setOperations(res.body);
-        CardActions.changed();
-      } else {
-        AppActions.requestFail();
-      }
+  jquery.get(config.apiRoot + '/cards/' + id + '/operations')
+    .done(function(data) {
+      CardStore.setOperations(data);
+      CardActions.changed();
     });
 }
 
 function takeMoney(id, data) {
-  superagent
-    .put(config.apiRoot + '/cards/' + id + '/balance')
-    .send(data)
-    .end(function(res) {
-      if (res.ok) {
-        CardActions.takeMoneySuccess(res.body);
-      } else {
-        CardActions.takeMoneyFail(res.body);
-      }
+
+  jquery.ajax({
+    url: config.apiRoot + '/cards/' + id + '/balance',
+    data: data,
+    method: 'PUT'
+  }).done(function(data) {
+      CardActions.takeMoneySuccess(data);
+    })
+    .fail(function() {
+      CardActions.takeMoneyFail(data);
     });
 }
 

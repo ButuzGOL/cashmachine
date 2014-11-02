@@ -15,8 +15,8 @@ module.exports = (
   <Routes location="hash">
     <Route name="app" path="/" handler={App}>
       <Route name="sessions/new" handler={SessionsNew}/>
-      <Route name="card" path="cards/:id" handler={CardsView}/>
-      <Route name="card/balance" path="cards/:id/balance" handler={CardsBalance}/>
+      <Route name="card" path="cards/me" handler={CardsView}/>
+      <Route name="card/balance" path="cards/me/balance" handler={CardsBalance}/>
       <DefaultRoute handler={HomePage}/>
     </Route>
   </Routes>

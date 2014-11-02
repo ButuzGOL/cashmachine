@@ -9,6 +9,7 @@ var AuthActions = require('../actions/AuthActions');
 var AuthStore = require('../stores/AuthStore');
 var addons = require('react-addons');
 var { Navigation } = require('react-router');
+var jquery = require('jquery');
 
 var SigninForm = React.createClass({
   mixins: [addons.LinkedStateMixin, Navigation],
@@ -24,6 +25,9 @@ var SigninForm = React.createClass({
   componentDidMount() {
     AuthStore.addSigninSuccessListener(this._onSigninSuccess);
     AuthStore.addSigninFailListener(this._onSigninFail);
+
+    // Wont work propert
+    // jQuery(this.refs.number.getDOMNode()).mask('999-999-999');
   },
   componentWillUnmount() {
     AuthStore.removeSigninSuccessListener(this._onSigninSuccess);
@@ -71,7 +75,7 @@ var SigninForm = React.createClass({
               Card number
             </label>
             <div className="col-sm-8">
-              <input type="text" className="form-control" id="number" name="number" valueLink={this.linkState('number')} />
+              <input type="text" className="form-control" id="number" name="number" ref="number" valueLink={this.linkState('number')} />
             </div>
           </div>
           <div className="form-group">

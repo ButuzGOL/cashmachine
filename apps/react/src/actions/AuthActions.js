@@ -23,7 +23,12 @@ var AuthActions = {
       stage: stage,
       data: data
     });
-  }
+  },
+  signoutSuccess: function(stage) {
+    AppDispatcher.handleViewAction({
+      actionType: ActionTypes.AUTH_SIGNOUT_SUCCESS
+    });
+  },
 };
 
 module.exports = AuthActions;

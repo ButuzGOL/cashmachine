@@ -24,7 +24,7 @@ var CardsViewPage = React.createClass({
     CardStore.removeChangeListener(this._onChange);
   },
   requestData() {
-    CardActions.fetch(this.props.params.id);
+    CardActions.fetch('me');
   },
   _onChange() {
     this.setState({
@@ -35,7 +35,7 @@ var CardsViewPage = React.createClass({
     e.preventDefault();
 
     this.setState({ showOperations: true });
-    CardStore.fetchOperations(this.props.params.id);
+    CardStore.fetchOperations('me');
   },
   render() {
 

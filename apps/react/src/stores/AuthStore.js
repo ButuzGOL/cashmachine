@@ -4,27 +4,34 @@ var ActionTypes = require('../constants/ActionTypes');
 var merge = require('react/lib/merge');
 var AuthActions = require('../actions/AuthActions');
 var config = require('../config');
-var superagent = require('superagent');
+var jquery = require('jquery');
 
 var SIGNIN_SUCCESS_EVENT = 'signinSuccess';
 var SIGNIN_FAIL_EVENT = 'signinFail';
+var SIGNOUT_SUCCESS_EVENT = 'signoutSuccess';
 
 function signin(stage, data) {
 
-  superagent
-    .post(config.apiRoot + '/signin')
-    .send(data)
-    .set('Accept', 'application/json')
-    .end(function(res) {
-      if (res.ok) {
-        AuthActions.signinSuccess(stage);
-      } else {
-        AuthActions.signinFail(stage, res.body);
-      }
+  jquery.post(config.apiRoot + '/signin', data)
+    .done(function(data) {
+      AuthActions.signinSuccess(stage);
+    })
+    .fail(function(jqXHR) {
+      AuthActions.signinFail(stage, jqXHR.responseJSON);
+    });
+}
+
+function signout() {
+
+  jquery.get(config.apiRoot + '/signout')
+    .done(function() {
+      AuthActions.signoutSuccess();
     });
 }
 
 var AuthStore = merge(EventEmitter.prototype, {
+  isSignin: false,
+  signout: signout,
   emitSigninSuccess(stage) {
     this.emit(SIGNIN_SUCCESS_EVENT, stage);
   },
@@ -33,6 +40,16 @@ var AuthStore = merge(EventEmitter.prototype, {
   },
   removeSigninSuccessListener(callback) {
     this.removeListener(SIGNIN_SUCCESS_EVENT, callback);
+  },
+
+  emitSignoutSuccess(stage) {
+    this.emit(SIGNOUT_SUCCESS_EVENT, stage);
+  },
+  addSignoutSuccessListener(callback) {
+    this.on(SIGNOUT_SUCCESS_EVENT, callback);
+  },
+  removeSignoutSuccessListener(callback) {
+    this.removeListener(SIGNOUT_SUCCESS_EVENT, callback);
   },
 
   emitSigninFail(stage, data) {
@@ -55,11 +72,17 @@ AuthStore.dispatchToken = AppDispatcher.register(function(payload) {
       break;
 
     case ActionTypes.AUTH_SIGNIN_SUCCESS:
+      AuthStore.isSignin = true;
       AuthStore.emitSigninSuccess(action.stage);
       break;
 
     case ActionTypes.AUTH_SIGNIN_FAIL:
       AuthStore.emitSigninFail(action.stage, action.data);
+      break;
+
+    case ActionTypes.AUTH_SIGNOUT_SUCCESS:
+      AuthStore.isSignin = false;
+      AuthStore.emitSignoutSuccess();
       break;
 
     default:

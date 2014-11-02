@@ -14,7 +14,7 @@ var CardsBalancePage = React.createClass({
     }
   },
   handleTakeMoneySubmit(data) {
-    CardStore.takeMoney(this.props.params.id, data)
+    CardStore.takeMoney('me', data)
   },
   componentDidMount() {
     CardStore.addTakeMoneySuccessListener(this._onTakeMoneySuccess);

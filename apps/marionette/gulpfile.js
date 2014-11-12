@@ -4,8 +4,8 @@ var gulp = require('gulp'),
     $ = require('gulp-load-plugins')();
 
 gulp.task('clean', function() {
-  gulp.src('dist', { read: false })
-    .pipe($.clean());
+  return gulp.src('dist', { read: false })
+    .pipe($.clean({ force: true }));
 });
 
 gulp.task('move', function() {

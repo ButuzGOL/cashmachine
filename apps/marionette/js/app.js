@@ -6,6 +6,8 @@ CashMachine.addRegions({
 });
 
 CashMachine.on('initialize:after', function(){
+  window.location.hash = '#';
+
   Backbone.history.start();
 });
 

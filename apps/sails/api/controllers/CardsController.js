@@ -22,7 +22,7 @@ module.exports = {
       return;
     }
 
-    Cards.findOne(req.session.cardId).done(function(err, card) {
+    Cards.findOne(req.session.cardId, function(err, card) {
       if (err) {
         return res.badRequest(err);
       }
@@ -31,7 +31,7 @@ module.exports = {
         return res.notFound();
       }
 
-      CardOperations.create({ code: 1, owner: card.id }).done(function(err) {
+      CardOperations.create({ code: 1, owner: card.id }, function(err) {
         if (err) {
           return res.badRequest(err);
         }
@@ -49,7 +49,7 @@ module.exports = {
 
     var take = Number(req.body.take);
 
-    Cards.findOne(req.session.cardId).done(function(err, card) {
+    Cards.findOne(req.session.cardId, function(err, card) {
       var saveFn, operationCreateFn;
 
       if (err) {
@@ -78,13 +78,15 @@ module.exports = {
       };
 
       operationCreateFn = function(done) {
-        CardOperations.create({ code: 2, owner: card.id }).done(function(err, operation) {
-          if (err) {
-            return res.badRequest(err);
-          }
+        CardOperations.create({ code: 2, owner: card.id },
+          function(err, operation) {
+            if (err) {
+              return res.badRequest(err);
+            }
 
-          done(operation);
-        });
+            done(operation);
+          }
+        );
       };
 
       async.waterfall([saveFn, operationCreateFn], function(operation) {
@@ -99,7 +101,7 @@ module.exports = {
       return;
     }
 
-    Cards.findOne(req.session.cardId).populate('operations').done(
+    Cards.findOne(req.session.cardId).populate('operations').exec(
       function(err, card) {
         if (err) {
           return res.badRequest(err);

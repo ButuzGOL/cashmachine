@@ -12,8 +12,8 @@ sails.lift({
     Cards.create({
       number: 111111111,
       pin: 111,
-      balance: 100
-    }).done(function(err, card) {
+      balance: 10000
+    }, function(err, card) {
       console.log(card)
       cb();
     });
@@ -23,14 +23,14 @@ sails.lift({
     Cards.create({
       number: 222222222,
       pin: 222,
-      balance: 200
-    }).done(function(err, card) {
+      balance: 20000
+    }, function(err, card) {
       console.log(card)
       cb();
     });
   };
 
-  Cards.destroy().done(function() {
+  Cards.destroy({}, function() {
     async.parallel(cards, function() {
       process.exit();
     });

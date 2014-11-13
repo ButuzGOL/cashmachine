@@ -6,33 +6,27 @@ EmberApp.SessionsNewController = Ember.ObjectController.extend({
   stage: 0,
   currentCard: null, //Ember.$.cookie('auth_card'),
   token: null, //Ember.$.cookie('access_token'),
-  isFirstStage: function() {
-    return this.get('stage') === 0;
-  }.property('stage'),
-  isSecondStage: function() {
-    return this.get('stage') === 1;
-  }.property('stage'),
+  isFirstStage: Ember.computed.equal('stage', 0),
+  isSecondStage: Ember.computed.equal('stage', 1),
   reset: function() {
     this.setProperties({
       number: null,
       pin: null,
-      stage: 0,
-      currentCard: null,
-      token: null
+      stage: 0
     });
     // Ember.$.ajaxSetup({
     //   headers: { 'Authorization': 'Bearer none' }
     // });
   },
-  tokenChanged: function() {
-    if (Ember.isEmpty(this.get('token'))) {
-      Ember.$.removeCookie('access_token');
-      Ember.$.removeCookie('auth_card');
-    } else {
-      Ember.$.cookie('access_token', this.get('token'));
-      Ember.$.cookie('auth_card', this.get('currentCard'));
-    }
-  }.observes('token'),
+  // tokenChanged: function() {
+  //   if (Ember.isEmpty(this.get('token'))) {
+  //     Ember.$.removeCookie('access_token');
+  //     Ember.$.removeCookie('auth_card');
+  //   } else {
+  //     Ember.$.cookie('access_token', this.get('token'));
+  //     Ember.$.cookie('auth_card', this.get('currentCard'));
+  //   }
+  // }.observes('token'),
   actions: {
     signin: function() {
       var self = this,

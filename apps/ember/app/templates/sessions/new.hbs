@@ -3,7 +3,7 @@
     {{#if errorMessage}}
       <p class="bg-danger">{{errorMessage}}</p>
     {{/if}}
-    <form class="form-horizontal" role="form" {{action signin on="submit"}}>
+    <form class="form-horizontal" role="form" {{action 'signin' on="submit"}}>
 
       {{#if isFirstStage}}
         <section id="signin-stage-zero">

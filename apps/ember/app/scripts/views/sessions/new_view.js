@@ -4,7 +4,7 @@ EmberApp.SessionsNewView = Ember.View.extend({
 
     this._super();
     this.get('controller.controllers.sessionsNew').addObserver('stage', function(controller) {
-      if (controller.get('stage') === 0) {
+      if (controller.get('stage') === 0 && !self.isDestroyed) {
         self.rerender();
       }
     });

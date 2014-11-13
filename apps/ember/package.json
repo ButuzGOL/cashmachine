@@ -2,6 +2,9 @@
   "name": "ember-app",
   "version": "0.0.0",
   "dependencies": {},
+  "scripts": {
+    "install": "bower install && grunt build"
+  },
   "devDependencies": {
     "grunt": "~0.4.1",
     "grunt-contrib-copy": "~0.4.1",

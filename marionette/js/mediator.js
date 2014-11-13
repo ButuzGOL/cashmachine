@@ -1,0 +1,3 @@
+CashMachine.mediator = {
+  card: null
+};

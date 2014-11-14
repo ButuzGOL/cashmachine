@@ -38,5 +38,5 @@ gulp.task('deploy', function() {
 
 
 gulp.task('build', ['clean'], function() {
-  runSequence('install', ['move', 'move-main'], 'deploy');
+  runSequence('install', ['move', 'move-main']);
 });

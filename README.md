@@ -1,4 +1,5 @@
 # Cash Machine
+[![Build Status](https://travis-ci.org/ButuzGOL/cashmachine.svg?branch=master)](https://travis-ci.org/ButuzGOL/cashmachine)
 
 ## What is cash machine ?
 The main point of this repo to make "cash machine app" with several frameworks.

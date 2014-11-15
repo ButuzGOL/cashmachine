@@ -49,6 +49,7 @@ CashMachine.module('SessionsApp.Signin', function(Signin, CashMachine, Backbone,
       this.model.signin()
         .done(function() {
           _this.stage = 1;
+          _this.model.set('pin', '');
         })
         .fail(function(jqXHR) {
           _this.errorMessages = [jqXHR.responseJSON.message];

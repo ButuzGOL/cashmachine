@@ -10,7 +10,7 @@ CashMachine.module('Entities', function(Entities, CashMachine, Backbone, Marione
     },
     defaults: {
       number: '',
-      pin: ''
+      pin: null
     },
     signin: function() {
       return $.ajax({

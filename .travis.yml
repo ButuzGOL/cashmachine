@@ -1,7 +1,15 @@
 language: node_js
 node_js:
-  - '0.10'
+- '0.10'
+before_script:
+- git config --global user.email "travis@nodemeatspace.com"
+- git config --global user.name "Travis-CI"
 before_install:
-  - npm install -g bower
-  - npm install -g grunt-cli
-  - npm install -g gulp
+- npm install -g bower
+- npm install -g grunt-cli
+- npm install -g gulp
+after_success:
+- npm run deploy-travis
+env:
+  global:
+  - secure: LcSDFSs5lzMpUd29zD2lomoMYIeSvd3QXPxBxzSsVkbPhcMlMKBiU3iKZugqHU1xV0uHEElzyMR69fIEv9fJ//qeQnYx/ddjr5JoSrmtZDRsNT5ssCCatm4HUBOO32CErlsMey3Jlp+IGFSqLc9xPLjMh6yWorcSp5linAg7JUE=

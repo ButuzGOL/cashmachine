@@ -3,7 +3,7 @@
 var gulp = require('gulp'),
     $ = require('gulp-load-plugins')(),
     runSequence = require('run-sequence'),
-    apps = ['marionette'];
+    apps = ['marionette', 'ember'];
 
 gulp.task('clean', function() {
   return gulp.src('dist', { read: false })
@@ -34,6 +34,14 @@ gulp.task('move-main', function() {
 gulp.task('deploy', function() {
   return gulp.src('./dist/**/*')
     .pipe($.ghPages());
+});
+
+gulp.task('deploy-travis', function() {
+  return gulp.src('./dist/**/*')
+    .pipe($.ghPages({
+      remoteUrl:
+      'https://' + process.env.GH_TOKEN + '@github.com/ButuzGOL/cashmachine.git'
+    }));
 });
 
 

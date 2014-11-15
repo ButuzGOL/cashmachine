@@ -3,7 +3,8 @@
   "version": "0.1.0",
   "author": "ButuzGOL",
   "scripts": {
-    "install": "gulp build"
+    "install": "gulp build",
+    "deploy-travis": "gulp deploy-travis"
   },
   "devDependencies": {
     "gulp": "^3.8.10",

@@ -19,7 +19,6 @@ CashMachine.vent.on('signout', function() {
   CashMachine.mediator.card = null;
 });
 
-
 $.ajaxSetup({
   dataType: 'json',
   xhrFields: {

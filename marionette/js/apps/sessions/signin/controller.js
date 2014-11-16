@@ -1,4 +1,4 @@
-CashMachine.module('SessionsApp.Signin', function(Signin, CashMachine, Backbone, Marionette, $, _) {
+CashMachine.module('SessionsApp.Signin', function(Signin, CashMachine) {
   Signin.Controller = {
     form: function() {
       var card, view;

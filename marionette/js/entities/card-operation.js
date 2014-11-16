@@ -1,4 +1,4 @@
-CashMachine.module('Entities', function(Entities, CashMachine, Backbone, Marionette, $, _) {
+CashMachine.module('Entities', function(Entities, CashMachine, Backbone) {
   Entities.Card.Operation = Backbone.Model.extend({
   });
 

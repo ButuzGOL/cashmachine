@@ -1,7 +1,7 @@
-CashMachine.module('PagesApp', function(PagesApp, CashMachine, Backbone, Marionette, $, _) {
+CashMachine.module('PagesApp', function(PagesApp, CashMachine) {
   PagesApp.Router = Marionette.AppRouter.extend({
     appRoutes: {
-      "": "home"
+      '': 'home'
     }
   });
 

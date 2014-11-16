@@ -1,4 +1,4 @@
-CashMachine.module('CardsApp', function(CardsApp, CashMachine, Backbone, Marionette, $, _){
+CashMachine.module('CardsApp', function(CardsApp, CashMachine){
   CardsApp.Router = Marionette.AppRouter.extend({
     appRoutes: {
       'cards/me': 'viewCard',

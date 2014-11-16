@@ -7,15 +7,89 @@
 
     <title>Cash Machine</title>
 
-    </head>
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet">
+    <link href="//cdnjs.cloudflare.com/ajax/libs/bootstrap-material-design/0.1.5/css/material.min.css" rel="stylesheet">
+    <link href="//cdnjs.cloudflare.com/ajax/libs/bootstrap-material-design/0.1.5/css/material-wfont.min.css" rel="stylesheet">
+    <link href="//cdnjs.cloudflare.com/ajax/libs/bootstrap-material-design/0.1.5/css/ripples.min.css" rel="stylesheet">
+
+    <style>
+      .page-header h1 {
+        font-weight: bold;
+      }
+      .container {
+        max-width: 992px;
+        margin: 0 auto;
+      }
+      a[class^=mdi-]:hover, a[class^=mdi-]:active, a[class^=mdi-]:focus {
+        text-decoration: none;
+      }
+
+      a.btn.info {
+        padding-left: 47px;
+      }
+
+      a.btn.info [class^=mdi-] {
+        position: absolute;
+        font-size: 1.5em;
+        position: absolute;
+        font-size: 1.5em;
+        left: 23px;
+        top: 7px;
+      }
+    </style>
+
+  </head>
   <body>
-    <h2></h2>
-    <ul>
-      <li>
-        <a href="marionette/">
-          Marionette
-        </a>
-      </li>
-    </ul>
+    <div class="container">
+
+    <div class="page-header text-center">
+      <i class="mdi-action-account-balance-wallet icon-material-pink" style="font-size: 50pt;"></i>
+      <h1>Cash Machine</h1>
+      <p class="lead">Cash Machine app to try frameworks</p>
+      <p>
+        <iframe src="http://ghbtns.com/github-btn.html?user=ButuzGOL&repo=cashmachine&type=watch&count=true"
+  allowtransparency="true" frameborder="0" scrolling="0" width="110" height="20"></iframe>
+  <iframe src="http://ghbtns.com/github-btn.html?user=ButuzGOL&repo=cashmachine&type=fork&count=true"
+  allowtransparency="true" frameborder="0" scrolling="0" width="95" height="20"></iframe>
+
+        <a href="https://twitter.com/share" class="twitter-share-button" data-text="Cash Machine app to try frameworks visit">Tweet</a>
+<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+      </p>
+    </div>
+    <div class="row">
+      <div class="col-lg-6 col-sm-6 col-md-6">
+        <div class="well">
+          <p>
+            In our days there a lot of javascript client and backend side frameworks.
+            But for best understanding we should do practice, so I created repo to write there the same app "cash machine" using different frameworks.<br>
+            It's something similar to <a href="http://todomvc.com/">TodoMVC</a>
+          </p>
+          <p>
+            Feel free for <a href="https://github.com/ButuzGOL/cashmachine/issues">issues</a> and <a href="https://github.com/ButuzGOL/cashmachine/network">fork</a>
+          </p>
+          <h4 class="text-primary">Mockup</h4>
+
+          <div class="text-center">
+            <img src="mockup.png" height="586" width="304">
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-6 col-sm-6 col-md-6">
+        <div>
+          <h3>
+            Marionette.js <a href="http://marionettejs.com/" class="mdi-content-link"></a>
+          </h3>
+          <p>Backbone.Marionette is a composite application library for Backbone.js that aims to simplify the construction of large scale JavaScript applications.</p>
+          <a href="marionette/" class="btn btn-info btn-raised info">
+            <i class="mdi-image-remove-red-eye"></i>
+            Demo
+          </a>
+          <a href="https://github.com/ButuzGOL/cashmachine/tree/master/apps/marionette" class="btn btn-default btn-raised info">
+            <i class="mdi-file-cloud-queue"></i>
+            Source
+          </a>
+        </div>
+      </div>
+    </div>
   </body>
 </html>

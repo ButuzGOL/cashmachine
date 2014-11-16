@@ -1,4 +1,4 @@
-CashMachine.module('CardsApp.Balance', function(Balance, CashMachine, Backbone, Marionette, $, _) {
+CashMachine.module('CardsApp.Balance', function(Balance, CashMachine) {
   Balance.Controller = {
     balanceCard: function() {
       var layout,

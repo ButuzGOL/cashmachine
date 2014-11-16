@@ -4,7 +4,4 @@ CashMachine.module('SessionsApp', function(SessionsApp, CashMachine, Backbone, M
     }
   });
 
-  CashMachine.addInitializer(function() {
-  });
-
 });

@@ -1,4 +1,4 @@
-CashMachine.module('HeaderApp', function(Header, CashMachine, Backbone, Marionette, $, _) {
+CashMachine.module('HeaderApp', function(Header, CashMachine) {
   var API = {
     listHeader: function() {
       Header.List.Controller.listHeader();

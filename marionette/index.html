@@ -3,16 +3,42 @@
   <head>
     <meta charset="utf-8">
     <title>Cash Machine</title>
-    <link href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css" rel="stylesheet">
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet">
+    <link href="//cdnjs.cloudflare.com/ajax/libs/bootstrap-material-design/0.1.5/css/material.min.css" rel="stylesheet">
     <link href="css/main.css" rel="stylesheet">
   </head>
 
   <body>
 
-    <div id="header-region"></div>
-
-    <div id="main-region" class="container">
+    <div id="source" class="well">
+      <h4>
+        Marionette.js
+        <a href="http://marionettejs.com/" class="mdi-content-link"></a>
+      </h4>
+      <p>
+        Backbone.Marionette is a composite application library for Backbone.js that aims to simplify the construction of large scale JavaScript applications.
+      </p>
+      <a href="https://github.com/ButuzGOL/cashmachine/tree/master/apps/marionette">Source</a>
+      <div>
+        <h5>
+          <strong>Credentials</strong>
+        </h5>
+        <dl class="dl-horizontal">
+          <dt>Card number:</dt>
+          <dd>111111111</dd>
+          <dt>Card pin:</dt>
+          <dd>111</dd>
+        </dl>
+      </div>
     </div>
+
+    <div class="container">
+      <div id="header-region"></div>
+
+      <div id="main-region" class="main-wrapper">
+      </div>
+    </div>
+    
 
     <script type="text/template" id="header-template">
 
@@ -42,7 +68,7 @@
 
     <script type="text/template" id="sessions-signin-template">
       <div class="row">
-        <div class="col-md-6 col-md-offset-3">
+        <div class="col-md-9 col-md-offset-3">
           <% if (errorMessages.length) { %>
             <div class="alert alert-danger">
               <% if (errorMessages.length === 1) { %>
@@ -118,7 +144,7 @@
 
     <script type="text/template" id="cards-balance-template">
       <h5>Take money</h5>
-      <div class="col-md-6 col-md-offset-3">
+      <div class="col-md-9 col-md-offset-3">
         <% if (errorMessages.length) { %>
           <div class="alert alert-danger">
             <% if (errorMessages.length === 1) { %>
@@ -140,7 +166,7 @@
             </div>
           </div>
           <div class="form-group">
-            <div class="col-sm-offset-4 col-sm-8">
+            <div class="col-sm-offset-2 col-sm-10">
               <button data-action="submit" class="btn btn-primary pull-right">Submit</button>
               <button data-action="cancel" class="btn btn-default">Cancel</button>
             </div>

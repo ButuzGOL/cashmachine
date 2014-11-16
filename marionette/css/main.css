@@ -1,3 +1,61 @@
 body {
   padding-top: 80px;
 }
+
+.container {
+  max-width: 548px !important;
+}
+
+#source a[class^=mdi-]:hover,
+#source a[class^=mdi-]:active,
+#source a[class^=mdi-]:focus {
+  text-decoration: none;
+}
+
+#source {
+  position: fixed;
+  top: 70px;
+  width: 200px;
+  left: 20px;
+}
+
+#source dl dt {
+  width: 92px;
+}
+
+#source dl dd {
+  margin-left: 96px;
+}
+
+@media (max-width: 768px) {
+  #source {
+    display: none;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 992px) {
+  .main-wrapper {
+    margin-left: 100px;
+  }
+}
+
+.navbar .navbar-nav>li>a {
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+
+.navbar-nav {
+  float: left;
+  margin: 0;
+}
+.navbar-nav>li {
+  float: left;
+}
+
+.navbar-nav.navbar-right {
+  float: right;
+}
+
+.navbar-brand {
+  padding: 15px 15px 15px 0 !important;
+}

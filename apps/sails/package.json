@@ -1,6 +1,5 @@
 {
   "name": "cashmachine",
-  "private": true,
   "version": "0.0.0",
   "description": "a Sails application",
   "keywords": [],
@@ -27,7 +26,6 @@
     "lodash": "~2.4.1"
   },
   "scripts": {
-    "postinstall": "node fake-data.js",
     "start": "node app.js",
     "debug": "node debug app.js"
   },
@@ -36,6 +34,5 @@
     "type": "git",
     "url": "git://github.com/butuzgol/cashmachine.git"
   },
-  "author": "butuzgol",
-  "license": ""
+  "author": "ButuzGOL"
 }

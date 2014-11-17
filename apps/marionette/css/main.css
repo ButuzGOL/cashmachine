@@ -4,6 +4,7 @@ body {
 
 .container {
   max-width: 548px !important;
+  min-width: 300px;
 }
 
 #source a[class^=mdi-]:hover,

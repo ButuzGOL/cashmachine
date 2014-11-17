@@ -4,6 +4,7 @@ EmberApp.CardBalanceController = Ember.ObjectController.extend({
   currentOperation: null,
   reset: function() {
     this.setProperties({
+      currentOperation: null,
       money: null
     });
   },

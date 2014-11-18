@@ -1,11 +1,15 @@
+function randomId() {
+  return Math.floor((Math.random() * 9999) + 1);
+}
+
 $.mockjax({
   url: /.*?\/signin/,
   response: function(settings) {
     var data = settings.data;
 
     if (data.number === '111111111' &&
-        (data.pin === '111' || data.pin === null)) {
-      this.responseText = { "id": "54630bbc484d45154e6fa294" };
+        (data.pin === '111' || typeof data.pin === 'undefined')) {
+      this.responseText = { "id": randomId() };
     } else {
       this.status = 400;
       this.responseText = { "message": "Wrong data" };
@@ -22,29 +26,29 @@ $.mockjax({
   url: /.*?\/cards\/me\/operations/,
   responseText: [{
     "code": 1,
-    "owner": "54630bbc484d45154e6fa294",
+    "owner": randomId(),
     "createdAt": "2014-11-12T07:37:28.165Z",
     "updatedAt": "2014-11-12T07:37:28.165Z",
-    "id": "54630e3881355d434e8a8be7"
+    "id": randomId()
   },
   {
     "code": 1,
-    "owner": "54630bbc484d45154e6fa294",
+    "owner": randomId(),
     "createdAt": "2014-11-12T07:37:29.338Z",
     "updatedAt": "2014-11-12T07:37:29.338Z",
-    "id": "54630e3981355d434e8a8be8"
+    "id": randomId()
   },
   {
     "code": 1,
-    "owner": "54630bbc484d45154e6fa294",
+    "owner": randomId(),
     "createdAt": "2014-11-12T07:37:54.804Z",
     "updatedAt": "2014-11-12T07:37:54.804Z",
-    "id": "54630e5281355d434e8a8be9"
+    "id": randomId()
   }]
 });
 
 $.mockjax({
-  url: /.*?\/cards\/me\/balance/,
+  url: /.*?\/cards\/.*?\/balance/,
   response: function(settings) {
     var data = settings.data;
 
@@ -58,7 +62,7 @@ $.mockjax({
       this.responseText = {
         "code": 2,
         "createdAt": "2014-11-15T07:24:23.497Z",
-        "id": "5466ffa74115434b1177fd15"
+        "id": randomId()
       };
     }
 
@@ -68,7 +72,7 @@ $.mockjax({
 $.mockjax({
   url: /.*?\/cards\/me/,
   responseText: {
-    "id": "54630bbc484d45154e6fa294",
+    "id": randomId(),
     "balance": 9999
   }
 });

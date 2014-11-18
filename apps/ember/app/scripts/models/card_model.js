@@ -3,9 +3,9 @@ EmberApp.Card = DS.Model.extend({
   operations: DS.hasMany('operation', { async: true }),
   take: function(money) {
     var self = this;
-
+    
     return Ember.$.ajax({
-      url: EmberApp.config.apiRoot + '/cards/balance',
+      url: EmberApp.config.apiRoot + '/cards/' + this.id + '/balance',
       method: 'PUT',
       data: { take: money }
     })

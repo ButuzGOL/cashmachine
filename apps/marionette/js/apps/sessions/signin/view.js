@@ -46,6 +46,9 @@ CashMachine.module('SessionsApp.Signin', function(Signin, CashMachine, Backbone,
 
       event.preventDefault();
 
+      if (this.stage === 0) {
+        this.model.unset('pin');
+      }
       this.model.signin()
         .done(function() {
           _this.stage = 1;

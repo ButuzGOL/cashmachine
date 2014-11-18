@@ -8,6 +8,8 @@ before_install:
 - npm install -g bower
 - npm install -g grunt-cli
 - npm install -g gulp
+- gem update --system
+- gem install compass
 after_success:
 - npm run deploy-travis
 env:

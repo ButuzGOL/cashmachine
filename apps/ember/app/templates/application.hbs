@@ -1,6 +1,7 @@
-<nav class="navbar-inverse navbar-static-top" role="navigation">
+<div class="container">
+  <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
     <div class="container">
-      <a class="navbar-brand" href="#">Cash Machine</a>
+      <a class="navbar-brand" href="">Cash Machine</a>
       <ul class="nav navbar-nav">
         <li>
           {{#link-to "index"}}Home{{/link-to}}
@@ -14,9 +15,9 @@
       {{/if}}
       </ul>
     </div>
-</nav>
+  </nav>
 
-<div class="container">
-  {{outlet}}
+  <div class="main-wrapper">
+    {{outlet}}
+  </div>
 </div>
-

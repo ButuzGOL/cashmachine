@@ -23,7 +23,7 @@ $.mockjax({
 });
 
 $.mockjax({
-  url: /.*?\/cards\/me\/operations/,
+  url: /.*?\/cards\/.*?\/operations/,
   responseText: [{
     "code": 1,
     "owner": randomId(),
@@ -70,7 +70,7 @@ $.mockjax({
 });
 
 $.mockjax({
-  url: /.*?\/cards\/me/,
+  url: /.*?\/cards\/.*?/,
   responseText: {
     "id": randomId(),
     "balance": 9999

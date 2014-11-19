@@ -17,6 +17,7 @@ angular
     'ngSanitize',
     'ngTouch',
     'mgcrea.ngStrap',
+    'ngMockE2E',
 
     'cashmachineApp.home',
     'cashmachineApp.sessions',
@@ -56,13 +57,12 @@ angular.module('cashmachineApp').run(function($location, auth, $rootScope) {
   var routesThatDontRequireAuth = ['/sessions/new'];
 
   var routeClean = function(route) {
-    return routesThatDontRequireAuth.find(function (noAuthRoute) {
-        return noAuthRoute.indexOf(route) === -1;
-      });
+    return routesThatDontRequireAuth.indexOf(route) !== -1;
   };
 
   $rootScope.$on('$routeChangeStart', function(event, next, current) {
-    if (!routeClean($location.url()) && !auth.isSignin()) {
+
+    if (!auth.isSignin() && !routeClean($location.url())) {
       $location.path('/sessions/new');
     }
   });

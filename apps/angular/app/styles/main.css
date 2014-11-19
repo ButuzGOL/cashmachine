@@ -1,15 +1,3 @@
-body {
-  padding-top: 0px;
-}
-
-p {
-  padding: 15px;
-}
-
-nav.navbar-static-top {
-  margin-bottom: 20px;
-}
-
 .alert-material {
   font-family: 'Roboto', sans-serif;
   outline: none;

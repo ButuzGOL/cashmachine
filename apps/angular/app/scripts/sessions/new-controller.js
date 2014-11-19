@@ -31,7 +31,7 @@ function SessionsNewController($scope, $rootScope, $log, $location, auth, Card, 
       };
 
       if (vm.stage === 1) {
-        data.pin = this.pin;
+        data.pin = vm.pin;
       }
 
       vm.errorMessage = null;

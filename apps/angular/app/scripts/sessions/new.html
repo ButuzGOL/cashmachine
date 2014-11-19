@@ -1,6 +1,8 @@
 <div class="row">
-  <div class="col-md-6 col-md-offset-3">
-    <p class="bg-danger" ng-show="vm.errorMessage">{{vm.errorMessage}}</p>
+  <div class="col-md-9 col-md-offset-3">
+    <div class="alert alert-danger" ng-show="vm.errorMessage">
+      {{vm.errorMessage}}
+    </div>
     <form class="form-horizontal" role="form" ng-submit="vm.signin()" novalidate>
       <section ng-show="vm.stage == 0">
         <div class="form-group">

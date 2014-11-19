@@ -9,16 +9,42 @@
     <!-- build:css(.) styles/vendor.css -->
     <!-- bower:css -->
     <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css" />
-    <link rel="stylesheet" href="bower_components/angular-motion/dist/angular-motion.min.css" />
+    <link rel="stylesheet" href="bower_components/angular-motion/dist/angular-motion.css" />
     <!-- endbower -->
     <!-- endbuild -->
     <!-- build:css(.tmp) styles/main.css -->
     <link rel="stylesheet" href="styles/main.css">
     <!-- endbuild -->
+
+    <link href="//cdnjs.cloudflare.com/ajax/libs/bootstrap-material-design/0.1.5/css/material.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="//pamparam.net/cashmachine/common/main.css">
   </head>
   <body ng-app="cashmachineApp">
-    <div id="header-region">
-      <nav class="navbar-inverse navbar-static-top" role="navigation" ng-controller="NavCotroller as vm">
+
+    <div id="source" class="well">
+      <h4>
+        Angular.js
+        <a href="https://angularjs.org/" class="mdi-content-link"></a>
+      </h4>
+      <p>
+        AngularJS lets you extend HTML vocabulary for your application. The resulting environment is extraordinarily expressive, readable, and quick to develop.
+      </p>
+      <a href="https://github.com/ButuzGOL/cashmachine/tree/master/apps/angular">Source</a>
+      <div>
+        <h5>
+          <strong>Credentials</strong>
+        </h5>
+        <dl class="dl-horizontal">
+          <dt>Card number:</dt>
+          <dd>111111111</dd>
+          <dt>Card pin:</dt>
+          <dd>111</dd>
+        </dl>
+      </div>
+    </div>
+
+    <div class="container">
+      <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation" ng-controller="NavCotroller as vm">
         <div class="container">
           <a class="navbar-brand" href="">Cash Machine</a>
           <ul class="nav navbar-nav">
@@ -29,9 +55,9 @@
           </ul>
         </div>
       </nav>
+    
+      <div ng-view="" class="main-wrapper"></div>
     </div>
-
-    <div ng-view="" class="container"></div>
 
     <!-- build:js(.) scripts/vendor.js -->
     <!-- bower:js -->
@@ -48,33 +74,34 @@
     <script src="bower_components/angular-route/angular-route.js"></script>
     <script src="bower_components/angular-strap/dist/angular-strap.js"></script>
     <script src="bower_components/angular-strap/dist/angular-strap.tpl.js"></script>
-    <script src="bower_components/jquery-maskedinput/dist/jquery.maskedinput.js"></script>
+    <script src="bower_components/angular-mocks/angular-mocks.js"></script>
     <!-- endbower -->
+    <script src="bower_components/jquery-maskedinput/dist/jquery.maskedinput.js"></script>
     <!-- endbuild -->
 
-        <!-- build:js({.tmp,app}) scripts/scripts.js -->
-        <script src="scripts/app.js"></script>
-        <script src="scripts/constants.js"></script>
+    <!-- build:js({.tmp,app}) scripts/scripts.js -->
+    <script src="scripts/app.js"></script>
+    <script src="scripts/constants.js"></script>
+     <script src="scripts/mocks.js"></script>
 
-        <script src="scripts/common/directives/masked-input.js"></script>
-        <script src="scripts/common/services/auth.js"></script>
+    <script src="scripts/common/directives/masked-input.js"></script>
+    <script src="scripts/common/services/auth.js"></script>
 
-        <script src="scripts/cards/cards.js"></script>
-        <script src="scripts/cards/view/view-controller.js"></script>
+    <script src="scripts/cards/cards.js"></script>
+    <script src="scripts/cards/view/view-controller.js"></script>
 
-        <script src="scripts/cards/balance/balance-controller.js"></script>
+    <script src="scripts/cards/balance/balance-controller.js"></script>
 
-        <script src="scripts/cards/common/directives/card-operation.js"></script>
-        <script src="scripts/cards/common/services/card-operation.js"></script>
-        <script src="scripts/cards/common/services/card.js"></script>
+    <script src="scripts/cards/common/directives/card-operation.js"></script>
+    <script src="scripts/cards/common/services/card-operation.js"></script>
+    <script src="scripts/cards/common/services/card.js"></script>
 
-        <script src="scripts/nav/nav-controller.js"></script>
+    <script src="scripts/nav/nav-controller.js"></script>
 
-        <script src="scripts/home/home.js"></script>
-        <script src="scripts/home/home-controller.js"></script>
-        <script src="scripts/sessions/new.js"></script>
-        <script src="scripts/sessions/new-controller.js"></script>
-
-        <!-- endbuild -->
-</body>
+    <script src="scripts/home/home.js"></script>
+    <script src="scripts/home/home-controller.js"></script>
+    <script src="scripts/sessions/new.js"></script>
+    <script src="scripts/sessions/new-controller.js"></script>
+    <!-- endbuild -->
+  </body>
 </html>

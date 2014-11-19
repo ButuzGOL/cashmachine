@@ -1,6 +1,9 @@
 {
   "name": "cashmachine",
   "version": "0.0.0",
+  "scripts": {
+    "install": "bower install && grunt build"
+  },
   "dependencies": {},
   "devDependencies": {
     "grunt": "^0.4.1",

@@ -3,7 +3,7 @@
 var gulp = require('gulp'),
     $ = require('gulp-load-plugins')(),
     runSequence = require('run-sequence'),
-    apps = ['marionette', 'ember'];
+    apps = ['marionette', 'ember', 'angular'];
 
 gulp.task('clean', function() {
   return gulp.src('dist', { read: false })

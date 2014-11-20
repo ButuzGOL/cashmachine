@@ -6,11 +6,11 @@ In our days there a lot of javascript client and backend side frameworks. But fo
 It's something similar to [TodoMVC](https://github.com/tastejs/todomvc)
 
 ## Apps
+* [React + Flux](https://github.com/ButuzGOL/cashmachine/tree/master/apps/react)
+* [Angular](https://github.com/ButuzGOL/cashmachine/tree/master/apps/angular)
+* [Ember](https://github.com/ButuzGOL/cashmachine/tree/master/apps/ember)
 * [Sails](https://github.com/ButuzGOL/cashmachine/tree/master/apps/sails)
 * [Marionette](https://github.com/ButuzGOL/cashmachine/tree/master/apps/marionette)
-* [Ember](https://github.com/ButuzGOL/cashmachine/tree/master/apps/ember)
-* [Angular](https://github.com/ButuzGOL/cashmachine/tree/master/apps/angular)
-* [React](https://github.com/ButuzGOL/cashmachine/tree/master/apps/react)
 
 ## Mockup
 # ![Mockup](mockup.png)

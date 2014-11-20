@@ -55,7 +55,7 @@ var TakeMoneyForm = React.createClass({
           </div>
         </div>
         <div className="form-group">
-          <div className="col-sm-offset-4 col-sm-8">
+          <div className="col-sm-offset-2 col-sm-10">
             <button type="submit" className="btn btn-primary pull-right">Submit</button>
 
             <button type="button" onClick={this.handleCancel} className="btn btn-default">Cancel</button>

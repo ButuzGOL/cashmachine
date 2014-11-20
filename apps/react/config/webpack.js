@@ -23,8 +23,8 @@ module.exports = function(release) {
 
     output: {
       filename: 'bundle.js',
-      path: './build/',
-      publicPatch: './build/'
+      path: './dist/',
+      publicPatch: './dist/'
     },
 
     cache: !release,

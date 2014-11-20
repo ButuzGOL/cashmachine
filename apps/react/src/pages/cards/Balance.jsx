@@ -29,8 +29,8 @@ var CardsBalancePage = React.createClass({
   render() {
     return (
       <div className="row">
-        <div className="col-md-6 col-md-offset-3">
-          <h4>Take money</h4>
+        <div className="col-md-9 col-md-offset-3">
+          <h5>Take money</h5>
           { this.state.operation ?
             <CardOperationInfo operation={this.state.operation} />
             :

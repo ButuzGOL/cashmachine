@@ -109,7 +109,7 @@ var SigninForm = React.createClass({
     return (
       <form className="form-horizontal" role="form" onSubmit={this.handleSubmit}>
         { this.state.errorMessage ?
-          <p className="bg-danger">{this.state.errorMessage}</p>
+          <div className="alert alert-danger">{this.state.errorMessage}</div>
           : null }
         {stageOutput}
       </form>

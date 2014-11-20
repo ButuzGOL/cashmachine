@@ -11,6 +11,7 @@ var React = require('react'),
 
 window['React'] = React;
 window['jQuery'] = jquery;
+window.$ = jquery;
 
 jquery.ajaxSetup({
   dataType: 'json',
@@ -48,18 +49,8 @@ var App = React.createClass({
     return (
       <div>
         <Navbar />
-        <div className="container">
+        <div className="main-wrapper">
           <this.props.activeRouteHandler />
-          <div className="navbar-footer">
-            <div className="container">
-              <p className="text-muted">
-                <span>© Cashmachine</span>
-                <span>
-                  <Link to="/">Home</Link>
-                </span>
-              </p>
-            </div>
-          </div>
         </div>
       </div>
     );

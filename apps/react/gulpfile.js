@@ -19,7 +19,7 @@ var pagespeed = require('psi');
 var argv = require('minimist')(process.argv.slice(2));
 
 // Settings
-var DEST = './build';                         // The build output folder
+var DEST = './dist';                         // The build output folder
 var RELEASE = !!argv.release;                 // Minimize and optimize during a build?
 var GOOGLE_ANALYTICS_ID = 'UA-XXXXX-X';       // https://www.google.com/analytics/web/
 var AUTOPREFIXER_BROWSERS = [                 // https://github.com/ai/autoprefixer
@@ -88,7 +88,7 @@ gulp.task('images', function() {
 // CSS style sheets
 gulp.task('styles', function() {
   src.styles = 'src/styles/**/*.{css,less}';
-  return gulp.src('src/styles/bootstrap.less')
+  return gulp.src('src/styles/app.less')
     .pipe($.plumber())
     .pipe($.less({
       sourceMap: !RELEASE,

@@ -35,15 +35,15 @@ var Navbar = React.createClass({
   },
   render() {
     return (
-      <div className="navbar-top">
+      <nav className="navbar navbar-inverse navbar-fixed-top" role="navigation">
         <div className="container">
-          <Link className="navbar-brand row" to="/">
-            <span>CashMachine</span>
-          </Link>
+          <a className="navbar-brand" href="">Cash Machine</a>
           <ul className="nav navbar-nav">
-            { (this.state.isSignin) ?
-              <li><a href="#">Home</a></li> : null
-            }
+            <li>
+              <Link to="/">
+                Home
+              </Link>
+            </li>
           </ul>
           <ul className="nav navbar-nav navbar-right">
             { (this.state.isSignin) ?
@@ -51,7 +51,7 @@ var Navbar = React.createClass({
             }
           </ul>
         </div>
-      </div>
+      </nav>
     );
   }
 });

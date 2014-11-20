@@ -9,8 +9,7 @@ var SessionsNewPage = React.createClass({
   render() {
     return (
       <div className="row">
-        <div className="col-md-6 col-md-offset-3">
-          <h4>SignIn</h4>
+        <div className="col-md-9 col-md-offset-3">
           <SigninForm />
         </div>
       </div>

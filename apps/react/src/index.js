@@ -3,4 +3,4 @@
 var React = require('react'),
     routes = require('./routes');
 
-React.renderComponent(routes, document.body);
+React.renderComponent(routes, document.getElementById('app'));

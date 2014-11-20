@@ -1,0 +1,17 @@
+<h4>Card Info</h4>
+
+<dl class="dl-horizontal">
+  <dt>Id</dt>
+  <dd>{{ currentCard.id }}</dd>
+  <dt>Balance</dt>
+  <dd>{{ currentCard.balance }}</dd>
+</dl>
+<a href="" ng-if="!vm.showOperations" ng-click="vm.fetchOperations()">Operations</a>
+
+<section ng-if="vm.showOperations">
+  <h5>Operations</h5>
+  <card-operation ng-repeat="operation in vm.cardOperations" operation="operation"></card-operation>
+  </dl>
+
+</section>
+

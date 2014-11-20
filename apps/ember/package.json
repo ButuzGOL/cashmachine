@@ -1,5 +1,5 @@
 {
-  "name": "ember-app",
+  "name": "cashmachine-ember",
   "version": "0.0.0",
   "scripts": {
     "install": "bower install && grunt build"

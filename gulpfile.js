@@ -10,10 +10,13 @@ gulp.task('clean', function() {
     .pipe($.clean());
 });
 
-gulp.task('install', function() {
-  return gulp.src('apps/{' + apps.join(',') + '}/package.json')
-    .pipe($.install());
-});
+gulp.task('install', $.shell.task(
+  'for app in ' + apps.join(' ') + ' \n' +
+  'do \n' +
+    'cd "apps/$app" && npm install \n' +
+    'cd ../../ \n' +
+  'done \n'
+));
 
 gulp.task('move', function() {
   return gulp.src(['apps/{' + apps.join(',') + '}/dist/**/*'])

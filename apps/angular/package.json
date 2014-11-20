@@ -1,5 +1,5 @@
 {
-  "name": "cashmachine",
+  "name": "cashmachine-angular",
   "version": "0.0.0",
   "scripts": {
     "install": "bower install && grunt build"
@@ -36,8 +36,5 @@
   },
   "engines": {
     "node": ">=0.10.0"
-  },
-  "scripts": {
-    "test": "grunt test"
   }
 }

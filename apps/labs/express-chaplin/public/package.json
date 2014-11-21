@@ -1,0 +1,22 @@
+{
+  "name": "CashMachine",
+  "version": "0.0.1",
+  "author": "",
+  "description": "",
+  "homepage": "",
+  "repository": "https://github.com/ButuzGOL/CashMachine",
+  "bugs": "https://github.com/ButuzGOL/CashMachine/issues",
+  "devDependencies": {
+    "grunt": "0.4.x",
+    "grunt-contrib-clean": "0.4.x",
+    "grunt-contrib-copy": "0.4.x",
+    "grunt-contrib-connect": "0.3.x",
+    "grunt-contrib-watch": "0.5.x",
+    "grunt-bower-task": "0.3.x",
+    "connect-url-rewrite": "0.1.x",
+    "grunt-contrib-stylus": "0.8.x",
+    "connect-livereload": "~0.3.0",
+    "grunt-contrib-jshint": "~0.6.4",
+    "grunt-contrib-concat": "~0.3.0"
+  }
+}

@@ -1,0 +1,8 @@
+if isSignedIn()
+  a(href=url('cards#show')) Card
+  br
+  a(href=url('cards#balance')) Take money
+else
+  .ui.grid
+    .five.wide.column
+      section#cards-new-form-container

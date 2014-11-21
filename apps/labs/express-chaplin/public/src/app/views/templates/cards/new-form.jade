@@ -1,0 +1,18 @@
+.ui.form.segment
+  != render('shared/form-error-messages', { errorMessages: errorMessages })
+  .field
+    - if (!currentCard)
+      .ui.left.labeled.input
+        input(type='number', name='number', placeholder='Card number', value=number, pattern='[0-9]{16}', required='required')
+        .ui.corner.label
+          i.icon.asterisk
+    - else
+      .ui.left.labeled.input
+        input(type='password', name='pin', placeholder='Card pin', pattern='[0-9]{4}' value=pin required='required')
+        .ui.corner.label
+          i.icon.asterisk
+  input.ui.blue.submit.button(type='submit', data-action='sign-in', value='Ok')
+  input.ui.button(type='reset', data-action='reset', value='Cancel')
+  - if (currentCard)
+    input.ui.button(type='button', data-action='back', value='Back')
+  .ui.small.inline.loader

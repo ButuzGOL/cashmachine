@@ -1,0 +1,27 @@
+a(href=url('pages#home')) Back
+
+- if (operation)
+  .ui.list
+    .item
+      .header Id
+      = operation._id
+    .item
+      .header Code
+      = operation.code
+    .item
+      .header Created
+      = operation.created
+- else
+  .ui.grid
+    .five.wide.column
+      .ui.form.segment
+        != render('shared/form-error-messages', { errorMessages: errorMessages })
+        != render('shared/form-success-messages', { successMessages: successMessages })
+        .field
+          .ui.left.labeled.input
+            input(type='number', name='take', placeholder='Take', required='required')
+            .ui.corner.label
+              i.icon.asterisk
+        input.ui.blue.submit.button(type='submit', data-action='take', value='Ok')
+        input.ui.button(type='reset', data-action='reset', value='Cancel')
+        .ui.small.inline.loader

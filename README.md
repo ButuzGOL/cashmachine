@@ -17,5 +17,8 @@ It's something similar to [TodoMVC](https://github.com/tastejs/todomvc)
 ### Backend
 * [Sails](https://github.com/ButuzGOL/cashmachine/tree/master/apps/sails)
 
+### Labs
+* [Express + Chaplin](https://github.com/ButuzGOL/cashmachine/tree/master/apps/labs/express-chaplin)
+
 ## Mockup
 # ![Mockup](mockup.png)

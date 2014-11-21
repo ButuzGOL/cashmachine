@@ -3,7 +3,7 @@
 'use strict';
 
 var { Route, DefaultRoute, Routes } = require('react-router'),
-    App = require('./App'),
+    App = require('./app'),
     HomePage = require('./pages/Index.jsx'),
     SessionsNew = require('./pages/sessions/New.jsx'),
     CardsView = require('./pages/cards/View.jsx'),

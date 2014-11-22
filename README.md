@@ -1,5 +1,6 @@
 # Cash Machine
 [![Build Status](https://travis-ci.org/ButuzGOL/cashmachine.svg?branch=master)](https://travis-ci.org/ButuzGOL/cashmachine)
+[![views](https://sourcegraph.com/api/repos/github.com/ButuzGOL/cashmachine/.counters/views.png)](https://sourcegraph.com/github.com/ButuzGOL/cashmachine)
 
 ## What is cash machine ?
 In our days there a lot of javascript client and backend side frameworks. But for best understanding we should do practice, so I created repo to write there the same app "cash machine" using different frameworks.  

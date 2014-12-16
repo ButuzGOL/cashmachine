@@ -1,4 +1,6 @@
 # Cash Machine
+
+[![Gitter](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/ButuzGOL/cashmachine?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 [![Build Status](https://travis-ci.org/ButuzGOL/cashmachine.svg?branch=master)](https://travis-ci.org/ButuzGOL/cashmachine)
 [![views](https://sourcegraph.com/api/repos/github.com/ButuzGOL/cashmachine/.counters/views.png)](https://sourcegraph.com/github.com/ButuzGOL/cashmachine)
 
